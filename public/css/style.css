@@ -1,0 +1,382 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+*{
+	box-sizing: border-box;
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	-O-box-sizing : border-box;
+}
+html{
+	font-size: 0.625rem;
+}
+body{
+
+	font-family: "helvetica neue condense",Arial,Helvetica,sans-serif;
+	font-size: 1.8rem;
+}
+.home{
+	color: #8a8a8a;
+}
+.home .wrapper{
+	
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.home .container{
+	width: 50%;
+	display: inline-block;
+
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-size: 1.5rem;
+}
+.home .container .field{
+	min-width: 300px;
+	border: 2px solid #c4c4c4;
+	
+	min-height:  25px;
+	display: block;
+	float: right;
+	
+}
+.home .container label{
+	text-align: left;
+	padding-top: 0px;
+	float: left;
+
+}
+.home .title-form{
+	vertical-align: top;
+	display: inline-block;
+	width: 45%;
+	color: #87878a;
+	font-size: 2.2rem;
+	text-transform: uppercase;
+	letter-spacing: -2px;
+}
+.home .under{
+	display: block;
+}
+.home .fade{
+	opacity: 0;
+}
+/*------------------------------------------------------ header -------------------------------*/
+.home #title{
+
+	font-weight: bold;
+	font-size: 4.5rem;
+	color: #87878a;
+}
+.home #title span{
+	color: #364291;
+}
+.home .main-header {
+	padding: 10px 0;
+	width: 100%;
+	border-bottom: 2px solid #bdbdbd ;
+}
+.hidden{
+	display: none;
+	visibility: hidden;
+}
+/*-----------------------------------destinataire--------------------------------------*/
+.home .dest{
+	padding: 20px 0;
+	border-bottom: 2px solid #bdbdbd ;
+	width: 100%;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-size: 1.5rem;
+}
+
+
+.home .dest .add_receive_button{
+	
+
+	padding: 0;
+	
+	float: right;
+
+	background: none;
+	border: none;
+	color: #374394;
+	font-size: 3rem;
+	font-weight: lighter;
+
+	
+}
+.home .dest .add_receive_button:hover{
+	cursor: pointer;
+	
+	background: lightgrey;
+}
+
+/*---------------------------------------test ------------------------------------*/
+.home .test{
+	padding: 20px 0;
+	border-bottom: 2px solid #bdbdbd ;
+	width: 100%;
+
+}
+
+/*-------------------------------en tête--------------------------------*/
+.home .header{
+	border-bottom: 2px solid #bdbdbd ;
+	padding: 20px 0;
+	width: 100%;
+}
+.home .header .title-form{
+	width: 45%;
+	padding: 50px 0;
+	vertical-align: top;
+}
+.home .header .container {
+	width: 50%;
+	
+
+	
+}
+.home .header .container .field{
+	margin-top: 15px;
+	display: block;
+	float: right;
+	
+
+}
+.home .header .container label{
+	padding-top: 20px;
+	float: left;
+	clear: both;
+}
+
+/*---------------------------type mail----------------------*/
+
+.home .mail-type{
+
+	padding: 20px 0;
+	width: 100%;
+}
+.home .mail-type .title-form{
+	padding: 25px 0;
+	vertical-align: top;
+}
+
+.home .mail-type .container{
+	padding-top: 40px;
+	text-align: left;
+	vertical-align: top;
+
+	
+
+}
+.home .mail-type .container {
+	margin-right: 10px;
+}
+.home .mail-type .container .warning{
+	letter-spacing: 0;
+	padding-top: 20px;
+	color: red;
+	display: block;
+	line-height: 1.5;
+	text-align: left;
+	opacity: 0;
+	
+}
+/*-----------------------------------------------mail----------------------------------*/
+.home .mail{
+	border-bottom: 2px solid #bdbdbd ;
+	
+	width: 100%;
+}
+.home .mail .title-form{
+	padding: 50px 0;
+
+}
+.home .mail .file {
+
+	background-color: none;
+	display: block;
+
+	
+}
+
+.home .mail .import{
+	opacity: 0;
+}
+.home .mail .file:last-of-type{
+	display: block;
+	
+	
+}
+
+.home .mail .file::-webkit-file-upload-button {
+  visibility: hidden;
+
+}
+.home .mail .file::before {
+  content: 'PARCOURIR';
+
+  background-color : #3ca834;
+  border: 2px solid #c2c2c2;
+  color : white;
+  line-height: 2;
+  font-size: 1.8rem;
+  padding: 5px 8px;
+
+
+}
+
+
+.home .mail label{
+	display: block;
+	margin:0px 20px 0px 0px;
+
+}
+
+.home .mail .validate{
+	border: 2px solid #c2c2c2;
+	margin: 20px auto;
+	display: block;
+	text-align: center;
+	background-color: #e6027b;
+	color: white;
+	font-size: 1.8rem;
+	line-height: 1.5;
+	min-width: 100px;
+	text-transform: uppercase;
+}
+
+/*-------------------------------------------- previsualisation----------------------------------*/
+
+.home .mail-renderer{
+	border-bottom: 2px solid #bdbdbd ;
+	width: 100%;
+	padding: 50px 0 ;
+
+}
+.home .mail-renderer .renderer{
+	min-height: 400px;
+	min-width: 40%;
+	border: 1.5px solid grey;
+	margin-bottom: 20px;
+}
+.home .mail-renderer p{
+	line-height: 1.5;
+}
+/*----------------------------------------- test ----------------*/
+.home .send-test{
+	padding: 20px 0;
+	width: 100%;
+	border-bottom: 2px solid #bdbdbd ;
+
+}
+.home .send-test p{
+	color: #435099;
+	display: inline-block;
+	line-height: 1.5;
+}
+.home .send-test button{
+	border: 2px solid #c2c2c2;
+	text-transform: uppercase;
+	margin: 0 auto;
+	display: block;
+	float: right;
+	background-color: #e6027b;
+	color: white;
+	font-size: 1.8rem;
+	line-height: 1.5;
+	min-width: 100px;
+	
+}
+/*----------------------------------send--------------*/
+
+.home .send{
+	padding: 20px 0;
+	width: 100%;
+	border-bottom: 2px solid #bdbdbd ;
+
+}
+.home .send p{
+	color: #435099;
+	display: inline-block;
+	line-height: 1.5;
+}
+.home .send button{
+	border: 2px solid #c2c2c2;
+	text-transform: uppercase;
+	margin: 0 auto;
+	display: block;
+	float: right;
+	background-color: #e6027b;
+	color: white;
+	font-size: 1.8rem;
+	line-height: 1.5;
+	min-width: 100px;
+	
+}
+/*------------------------------send renderer-------------*/
+.home .send-renderer{
+	padding: 20px 0;
+	width: 100%;
+	border-bottom: 2px solid #bdbdbd ;
+
+}
+.home .send-renderer p{
+
+	color: #435099;
+	line-height: 1.5;
+}
+
+
+
