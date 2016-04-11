@@ -1,16 +1,16 @@
 <?php
-
+include_once './vendor/autoload.php';
 class liste_destinataireTableSeeder {
     private $servername = 'localhost';
     private $username = 'root';
     private $password = NULL;
     private $dbname = 'mailing_kertios';
     private $stmt = NULL;
-    private $table = 'users';
+    private $table = 'liste_destinataire';
 
     public function run() {
+        $faker = Faker\Factory::create();
         
-
 
         try {
 
@@ -18,16 +18,28 @@ class liste_destinataireTableSeeder {
             //set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = $conn->prepare("TRUNCATE TABLE $this->table");
+            $sql = $conn->prepare("DELETE FROM $this->table");
             $sql->execute();
-            $this->stmt =  $conn->prepare("INSERT INTO $this->table (..,..) VALUES (:.., :.., :.., :..)");
-           
-            $this->stmt->bindParam(':..', $.., PDO::PARAM_STR);
+            for( $i=0; $i<10; $i++){
+                $this->stmt =  $conn->prepare("INSERT INTO $this->table (libelle, adresse_id, mail_id) VALUES (:libelle, :adresse_id, :mail_id)");
+                $adresse_id_arr = array(0,1,2,3,4);
+                $mail_id_arr = array(0,1,2,3,4,5,6,7,8);
+                $libelle = $faker->name;
+                $adresse_id = array_rand($adresse_id_arr, 1);
+                $mail_id = array_rand($mail_id_arr,1);
 
-            if($this->stmt->execute()) {
-              echo "1 row has been inserted \n ";  
+
+               
+                $this->stmt->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+                $this->stmt->bindParam(':mail_id', $mail_id, PDO::PARAM_INT);
+                $this->stmt->bindParam(':adresse_id', $adresse_id, PDO::PARAM_INT);
+
+                if($this->stmt->execute()) {
+                  echo "1 row has been inserted \n ";  
+                }
+
+                
             }
-
             $conn = null;
          
            

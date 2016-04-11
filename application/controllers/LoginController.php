@@ -22,7 +22,6 @@ class LoginController extends CI_Controller {
 
 	public function index()
 	{
-
 		$this->load->helper(array('form'));
    		$this->load->view('front/login');
 	}

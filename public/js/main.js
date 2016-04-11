@@ -1,6 +1,8 @@
 'use strict'; // use strict mode of js
 $(document).ready(function(){
 	switchForm('.indexForm','.add_receive_button','add_receive.php');//form, button, url
+	switchForm('.indexForm','.sav_mail','saved_mail');
+
 	chooseTypeMail.init();
 	
 });
@@ -8,11 +10,27 @@ $(document).ready(function(){
 
 //change action form, button, url
 function switchForm(form, button, newUrl){
+	var url = window.location.href;
+	var part = url.split("/");
+	var edit_mode = false;
+	var $token = $('.main-header').attr('data-token');
+
 	var $form = $(form);
 	var $button = $(button);
+	
+
+	if(part[4] === $token ){
+		edit_mode = true;
+	}
 	$button.on('click',function(){//when we click on  button we change action url form
-		$form.attr('action',newUrl);
+		if(edit_mode === false){
+			$form.attr('action',newUrl);
+		}
+		else{
+			$form.attr('action', window.location.href + '/edit');
+		}
 	});
+
 }
 
 var chooseTypeMail = {
@@ -62,7 +80,7 @@ var chooseTypeMail = {
 			var type = $(this).val();
 
 			console.log(type);
-			if(type === '0'){
+			if(type === 'html'){
 				self.editor_mode = false;
 				self.html_mode = true;
 				$('.import').css({
@@ -72,7 +90,7 @@ var chooseTypeMail = {
 
 				
 			}
-			if(type === '1'){
+			if(type === 'texte'){
 				self.html_mode = false;
 				self.editor_mode = true;
 				$('.import').css({
@@ -87,11 +105,6 @@ var chooseTypeMail = {
 		})
 	}
 }
-
-function chooseTypeMail(){// when we choose type of mail
-
-};
-
 
 
 

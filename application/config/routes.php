@@ -51,6 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'loginController/index';
 $route['home'] = 'frontController/index';
+$route['saved_mail'] = 'frontController/save';
+$route['saved_mail/(:any)'] = 'frontController/rdytosend';
+$route['saved_mail/(:any)/edit'] = 'frontController/edit';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

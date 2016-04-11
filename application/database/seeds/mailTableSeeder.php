@@ -21,11 +21,12 @@ class mailTableSeeder {
             $sql = $conn->prepare("DELETE FROM $this->table");
             $sql->execute();
             $type_arr = array('html','text');
+
             $status_arr = array(0,1);
             for( $i=0; $i<10; $i++){
                 $this->stmt =  $conn->prepare("INSERT INTO $this->table (type, sujet, date_envoi, status, token, email, nom, corps_mail) VALUES (:type, :sujet, :date_envoi, :status, :token, :email, :nom, :corps_mail)");
                 
-                $type = array_rand($type_arr, 1);
+                $type = $type_arr[array_rand($type_arr,1)];
                 $sujet= $faker->name;
                 $date_envoi = $faker->date;
                 $status = array_rand($status_arr, 1) ;

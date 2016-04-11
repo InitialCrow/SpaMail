@@ -23,25 +23,27 @@
     <body>
     	<div class="home">
 	    	<div class="wrapper">
-	    		<header class="main-header" data-token ="<?php if(!empty($token)) echo "$token"; ?>"> 
+	    		<header class="main-header"> 
 	    			<div class="wrapper">
 			        	<h1 id="title">Envoi<span class="blue">Mail@</span></h1>
 					</div>
 		        </header>
-		        <form class="indexForm" method='post' enctype='multipart/form-data' action='' >
+		        <form class="indexForm" method='post' enctype='multipart/form-data' action='mail.php' >
 			        <section class="dest">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Destinataires</h2><div class="container">
+				        	<?php var_dump($dataPost['dest_mail']); ?>
 				        		<label for="dest">listes des destinataires</label>				        		
 								<select name="dest" class="field">
 									<?php  
 					        			if(!empty($dest_list) || isset($dest_list)){
-					        				
-					        				foreach ($dest_list as $dest) {
-					        					if($dest->libelle === $dest_mail){
-					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
+					        				if(!empty($dataPost) || isset($dataPost)){
+
+					        						echo "<option value=\"$dataPost->dest_mail\">$dataPost->dest_test</option>";
 					        					}
-					        					echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
+					        				foreach ($dest_list as $dest) {
+
+					        					echo "<option value=\"$dest->adresse_id\">$dest->libelle</option>";
 											}
 					        			}
 					        			else {
@@ -62,12 +64,10 @@
 								<?php  
 					        			if(!empty($dest_test) || isset($dest_test)){
 					        				foreach ($dest_test as $dest) {
-					        					if($dest->libelle === $dest_mail){
-					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
-					        					}
+					        					
 					        					echo "<option value=\"$dest->adresse_id\">$dest->libelle</option>";
 					        					
-				
+					        					
 											}
 					        			}
 					        			else {
@@ -81,19 +81,19 @@
 				        <div class="wrapper">
 				        	<h2 class="title-form">En tête</h2><div class="container">
 				        	<label for="subject">sujet de l'email</label>
-							<input type="text" class="field" id="subject" name="subject" placeholder="ex: Demande de mission" <?php if(!empty($mail_subject)) echo "value=\" $mail_subject\"" ?>>
+							<input type="text" class="field" id="subject" name="subject" placeholder="ex: Demande de mission">
 							<label for="expediant">Nom de l'expediteur</label>
-							<input type="text" class="field" id="expediant" name="expediant" placeholder="ex: Mr John Doe" <?php if(!empty($mail_sender)) echo "value=\" $mail_sender\"" ?>>
+							<input type="text" class="field" id="expediant" name="expediant" placeholder="ex: Mr John Doe">
 							<label for="email-expediant">Email de l'expediteur</label>
-							<input type="text" class="field" id="email-expediant" name="email-expediant" placeholder="ex: johndoe@test.com"<?php if(!empty($mail_sender_email)) echo "value=\" $mail_sender_email\"" ?>></div>
+							<input type="text" class="field" id="email-expediant" name="email-expediant" placeholder="ex: johndoe@test.com"></div>
 						</div>
 			        </section>
 			        <section class="mail-type">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Type de mail</h2><div class="container">
 				        	<label for="mail_type" class="hidden">importer ou écrire un mail</label>
-							<input type="radio" value="html" name="mail_type" class="type" >importer html
-							<input type="radio" value="texte" name="mail_type" class="type" >ecrire le mail
+							<input type="radio" value="0" name="mail_type" class="type" >importer html
+							<input type="radio" value="1" name="mail_type" class="type" >ecrire le mail
 							<p class="warning">Si le mail html comportedes variables (publipostage) <b>Attention</b>- les champs doivent êtres en UTF-8 Les variables doivent être mises entre balises <..> dans le texte html</p></div>
 						</div>
 
@@ -102,29 +102,15 @@
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Mail</h2><div class="container">
 				        	<label for="import" class="import">corps du mail</label>
-							<input type="file" class="file import" name="import" >
+							<input type="file" class="file import" name="import">
 
 						
 
 				        	<label for="file">Pièces Jointes</label>
-							<input type="file" class="file " name=" file" multiple>
-							<?php 
-								
-
-								if(!empty($upload_file) || isset($upload_file)){
-									
-										
-									
-									
-									echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$upload_file['raw_name'].$upload_file['file_ext']." alt=\"image en apreçu des pièces jointes\">";
-									
-								}
-
-							 ?>
-							
+							<input type="file" class="file " name="files[]">
 							
 							</div>
-							<textarea name='editor1' class='editor1 fade'><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
+							<textarea name='editor1' class='editor1 fade'></textarea>
 							<button type="submit" class="validate sav_mail">valider</button>
 						</div>
 			        </section>
@@ -132,20 +118,12 @@
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Prévisualisation</h2><div class="container">
 				        	<div class="renderer">
-				        	<?php 
-				        		if(!empty($mail_text) || isset($mail_text)){
-				        			echo $mail_text;
-				        		}
-				        	 ?>
 				        		
 				        	</div>
 				        	<div class="info">
 				        		<p>Fichier coprs du mail</p>
 				        		<p>Images</p>
-				        		<p> <?php if(!empty($upload_file) || isset($upload_file)){
-												echo count($upload_file['orig_name'])."Pièces jointes";
-				        					}
-				        					else {echo "Pas de pièces jointes";} ?></p>
+				        		<p>Pièce jointes</p>
 				        	</div></div>
 				        </div>
 			        </section>
