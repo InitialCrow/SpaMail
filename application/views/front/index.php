@@ -93,7 +93,7 @@
 				        	<h2 class="title-form">Type de mail</h2><div class="container">
 				        	<label for="mail_type" class="hidden">importer ou écrire un mail</label>
 							<input type="radio" value="html" name="mail_type" class="type" >importer html
-							<input type="radio" value="texte" name="mail_type" class="type" >ecrire le mail
+							<input type="radio" value="text" name="mail_type" class="type" >ecrire le mail
 							<p class="warning">Si le mail html comportedes variables (publipostage) <b>Attention</b>- les champs doivent êtres en UTF-8 Les variables doivent être mises entre balises <..> dans le texte html</p></div>
 						</div>
 
@@ -107,16 +107,19 @@
 						
 
 				        	<label for="file">Pièces Jointes</label>
-							<input type="file" class="file " name=" file" multiple>
+							<input type="file" class="file " name=" pieces[]" multiple>
 							<?php 
 								
 
 								if(!empty($upload_file) || isset($upload_file)){
 									
 										
+									foreach ($upload_file['name'] as $file_name) {
+										
+										echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$file_name." alt=\"image en apreçu des pièces jointes\"><p>".$file_name ."</p>";
+									}
 									
 									
-									echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$upload_file['raw_name'].$upload_file['file_ext']." alt=\"image en apreçu des pièces jointes\">";
 									
 								}
 
@@ -143,9 +146,10 @@
 				        		<p>Fichier coprs du mail</p>
 				        		<p>Images</p>
 				        		<p> <?php if(!empty($upload_file) || isset($upload_file)){
-												echo count($upload_file['orig_name'])."Pièces jointes";
-				        					}
-				        					else {echo "Pas de pièces jointes";} ?></p>
+									echo count($upload_file['name'])."Pièces jointes";
+				        				}
+				        				else {echo "Pas de pièces jointes";} 
+				        			?></p>
 				        	</div></div>
 				        </div>
 			        </section>

@@ -90,7 +90,7 @@ var chooseTypeMail = {
 
 				
 			}
-			if(type === 'texte'){
+			if(type === 'text'){
 				self.html_mode = false;
 				self.editor_mode = true;
 				$('.import').css({
