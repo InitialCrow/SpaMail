@@ -38,6 +38,7 @@ class Migration_liste_destinataire extends CI_Migration {
                 mail_id INT(11) UNSIGNED,
                 adresse_id INT(11) UNSIGNED
                 
+                
 
             )';
 

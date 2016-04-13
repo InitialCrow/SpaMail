@@ -9,29 +9,40 @@
 			// Loop through each file
 			for($i=0; $i<$total; $i++) {
 				$ext = pathinfo($_FILES[$inputName]['name'][$i] , PATHINFO_EXTENSION);
-				$newName = uniqid().".$ext";
+				$newName = $this->randomString().".$ext";
+				
 				$_FILES[$inputName]['name'][$i]= $newName;
 			
-				 
+	
 				//Get the temp file path
 				$tmpFilePath = $_FILES[$inputName]['tmp_name'][$i];
 
 				//Make sure we have a filepath
 				if ($tmpFilePath != ""){
 					//Setup our new file path
-					$newFilePath = $path .'/'. $newName;
+					$newFilePath = $path .'/'. $_FILES[$inputName]['name'][$i];
 					
 					//Upload the file into the temp dir
 					if(move_uploaded_file($tmpFilePath, $newFilePath)) {
-						
-						$file = $_FILES[$inputName];
 						
 					//Handle other code here
 
 					}
 				}	
 			}
+			$file = $_FILES[$inputName];
 			return $file;
+		}
+		
+		public function randomString($length = 15) {
+			$str = "";
+			$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+			$max = count($characters) - 1;
+			for ($i = 0; $i < $length; $i++) {
+				$rand = mt_rand(0, $max);
+				$str .= $characters[$rand];
+			}
+			return $str;
 		}
 	}
 ?>

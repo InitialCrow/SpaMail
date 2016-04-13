@@ -27,7 +27,9 @@
 	    			<div class="wrapper">
 			        	<h1 id="title">Envoi<span class="blue">Mail@</span></h1>
 					</div>
+					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
 		        </header>
+
 		        <form class="indexForm" method='post' enctype='multipart/form-data' action='' >
 			        <section class="dest">
 			        	<div class="wrapper">

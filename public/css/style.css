@@ -380,3 +380,162 @@ body{
 
 
 
+
+/*----------------------------------------------------------------------------------------------------------------------------
+												dashboard						
+--------------------------------------------------------------------------------------------------------------------------------*/
+
+.dashboard {
+	
+	max-width: 1800px;
+	margin: 0 auto;
+}
+
+.dashboard .title{
+	text-transform: uppercase;
+	font-size: 1.8rem;
+	padding : 40px 0 ;
+	
+}
+.dashboard a{
+	color: black;
+}
+.dashboard form a:hover{
+	display: block;
+	background-color: lightgrey;
+}
+.dashboard .row{
+	text-align: center;
+}
+.dashboard .rowData{
+	text-align: center;
+	border-top: 1px solid grey;
+	padding : 10px 0 ;
+}
+
+.partial-nav{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.partial-nav li{
+	text-align: center;
+	width: 15%;
+	display: inline-block;
+
+}
+.partial-nav li a{
+	color: blue;
+	display: block;
+	line-height: 2;
+	
+}
+
+.dashboardList {
+	
+	max-width: 1800px;
+	margin: 0 auto;
+}
+
+.dashboardList .title{
+	text-transform: uppercase;
+	font-size: 1.8rem;
+	padding : 40px 0 ;
+	
+}
+.dashboardList a{
+	color: black;
+}
+.dashboardList form a:hover{
+	display: block;
+	background-color: lightgrey;
+}
+.dashboardList .row{
+	text-align: center;
+}
+.dashboardList .rowData{
+	text-align: center;
+	border-top: 1px solid grey;
+	padding : 10px 0 ;
+}
+
+.dashboardList .field{
+	margin: 20px 0;
+	
+}
+.dashboardList p{
+	line-height: 2;
+	
+}
+.dashboardList .row{
+	text-align: center;
+}
+.dashboardList .rowData{
+	text-transform: none;
+	text-align: center;
+	border-top: 1px solid grey;
+	padding : 10px 0 ;
+}
+.dashboardList .editable{
+
+}
+.dashboardList .editable:hover{
+	background-color: lightblue;
+	cursor: pointer;
+}
+.dashboardList .back-page{
+
+	color : blue;
+	
+}
+.dashboardList .back-page:hover{
+	background : none;
+	color : lightblue;
+	
+}
+.dashboardListPannel label{
+	width: 50%;
+	display: block;
+	margin:  0 auto;
+	text-transform: center;
+}
+
+.dashboardListPannel .title{
+	text-transform: uppercase;
+	font-size: 1.8rem;
+	padding : 40px 0 ;
+	
+
+}
+
+.dashboardListPannel .row{
+	text-align: center;
+}
+.dashboardListPannel .rowData{
+	text-transform: none;
+	text-align: center;
+	border-top: 1px solid grey;
+	padding-top : 10px
+}
+
+.dashboardListPannel .libelle{
+	margin: 20px auto;
+	width: 50%;
+}
+/*.dashboardListPannel .prenom{
+	margin: 20px auto;
+	width: 50%;
+}
+.dashboardListPannel .nom{
+	margin: 20px auto;
+	width: 50%;
+}
+.dashboardListPannel .email{
+	margin: 20px auto;
+	width: 50%;
+}
+.dashboardListPannel .back-page{
+	display: block;
+	width: 20%;
+	margin : 20px auto;
+	
+}*/

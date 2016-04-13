@@ -49,13 +49,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+// route home
 $route['default_controller'] = 'loginController/index';
+
+
+
+//  route indexfront
 $route['home'] = 'frontController/index';
 $route['saved_mail'] = 'frontController/save';
 $route['saved_mail/(:any)'] = "frontController/rdytosend/$1";
 $route['saved_mail/(:any)/edit'] = 'frontController/edit/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+// route dashboard
+$route['dashboard'] = 'adminController/index';
+$route['dashboard/(:any)/delete/(:any)'] = 'adminController/delete/$1/$2';
+$route['dashboard/list'] = 'adminController/indexList';
+
+$route['dashboard/adress/(:any)'] = 'adminController/showList/$1';
+$route['dashboard/adress/edit_list/(:any)'] = 'adminController/edit/$1';
+$route['dashboard/list/pannel'] = 'adminController/listPannel';
+$route['dashboard/edit_list/(:any)/saveAdress'] = 'adminController/saveAdress/$1';
+$route['dashboard/list/add'] = 'adminController/addList';
 
 
 

@@ -21,10 +21,14 @@ class adresseTableSeeder {
 
             $sql = $conn->prepare("DELETE FROM $this->table");
             $sql->execute();
-            for( $i=0; $i<10; $i++){
+            $liste_destinataire_id =0;
+            for( $i=0; $i<50; $i++){
+                $liste_destinataire_id ++;
                 $email = $faker->email;
-                $liste_destinataire_id_arr = array(2,3,4,5,6,7,8,9,10,11);
-                $liste_destinataire_id = array_rand($liste_destinataire_id_arr,1);
+                // $liste_destinataire_id_arr = array(2,3,4,5,6,7,8,9,10,11);
+                if($liste_destinataire_id === 10){
+                    $liste_destinataire_id = 1;
+                }
                 $nom = $faker->name;
                 $prenom = $faker->name;
                 $this->stmt =  $conn->prepare("INSERT INTO $this->table (email, liste_destinataire_id, nom, prenom) VALUES (:email, :liste_destinataire_id, :nom, :prenom)");

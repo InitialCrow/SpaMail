@@ -149,6 +149,7 @@ class FrontController extends CI_Controller {
 			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
 			// $this->my_multupload->do_upload('./public/uploads/import_html','import');
 			
+		
 			$this->session->set_userdata($data);
 
 

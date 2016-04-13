@@ -20,12 +20,14 @@ class liste_destinataireTableSeeder {
 
             $sql = $conn->prepare("DELETE FROM $this->table");
             $sql->execute();
+            $adresse_id = 0;
             for( $i=0; $i<10; $i++){
                 $this->stmt =  $conn->prepare("INSERT INTO $this->table (libelle, adresse_id, mail_id) VALUES (:libelle, :adresse_id, :mail_id)");
-                $adresse_id_arr = array(0,1,2,3,4);
+                // $adresse_id_arr = array(0,1,2,3,4);
+                $adresse_id++;
                 $mail_id_arr = array(0,1,2,3,4,5,6,7,8);
                 $libelle = $faker->name;
-                $adresse_id = array_rand($adresse_id_arr, 1);
+                // $adresse_id = array_rand($adresse_id_arr, 1);
                 $mail_id = array_rand($mail_id_arr,1);
 
 
