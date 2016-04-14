@@ -8,6 +8,8 @@ $(document).ready(function(){
 
 	chooseTypeMail.init();
 	editAdress();
+	addListPannel('.add_list_button');
+	addListPannel('.add_adress_button',true);
 
 	
 });
@@ -149,12 +151,13 @@ function checkDelete(idButton){
 				}
 				if( $id_html[$id_html.length-1] === 'deleteAd'){
 					$url = $id+'/delete/'+$type;
+
 					// $('.adminForm').attr('action', $id+'/delete/'+$type);
 				}
 				$.ajax({
 					url: $url,
 					type:'POST',
-					data: $('adminForm').serialize(),
+					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
 						document.location.reload();
@@ -162,7 +165,7 @@ function checkDelete(idButton){
 					error : function(msg) {
 						console.log(msg);
 					}
-    			});
+    				});
 			});
 			
 		}
@@ -178,7 +181,7 @@ function editAdress(){
 
 	$elem.on('click',function(){
 		var newVal = null;
-		newVal = prompt();
+		newVal = prompt('entrer votre nouvelle valeur');
 
 		if(newVal !== null && newVal !== "" && newVal !== " "){
 			$(this).find('input').val(newVal);
@@ -198,7 +201,66 @@ function editAdress(){
 		
 	});
 }
+function addListPannel(button, submit_mode){
+	var $button = $(button);
+	var $prenomContainer = $('.prenom_input');
+	var $nomContainer = $('.nom_input');
+	var $emailContainer = $('.email_input');
+	var i = 0; 
+	
+	if(submit_mode === true){
+		var $optionContainer = $('.option_input');
+		$button.on('click',function(evt){
+			evt.preventDefault();
+			
 
+			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"></input>"
+			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"></input>"
+			var optionInput =  "<button type=\"submit\" class=\"add-new-adress btn btn-default\">ajouter à la liste</burron>"
+			$emailContainer.append(emailInput);
+			$nomContainer.append(nomInput);
+			$prenomContainer.append(prenomInput);
+			 $optionContainer.append(optionInput);
+
+			$('.add-new-adress').on('click',function(evt){
+
+				evt.preventDefault();
+
+			
+				$.ajax({
+					url: 'add/index',
+					type:'POST',
+					data: $('.adminForm').serialize(),
+					success: function(msg)
+					{
+						document.location.reload();
+					},
+					error : function(msg) {
+						console.log(msg);
+					}
+    				});
+			});
+		i++;	
+		})
+
+	}
+	else{
+		$button.on('click',function(evt){
+			evt.preventDefault();
+			i++;
+			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"></input>"
+			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"></input>"
+			
+			
+			 $prenomContainer.append(prenomInput);
+			 $nomContainer.append(nomInput);
+			 $emailContainer.append(emailInput);
+		})
+	}
+	
+}
 
 
 

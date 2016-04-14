@@ -70,7 +70,9 @@ class FrontController extends CI_Controller {
 			$data['mail_text'] = $this->input->post('editor1');
 			$data['mail_type'] = $this->input->post('mail_type');
 			
-			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+
+
+			
 			
 			
 			$token = "";
@@ -95,6 +97,25 @@ class FrontController extends CI_Controller {
 			$this->session->set_userdata($data);
 			
 			$this->db->insert('mail', $dataDB); 
+			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
+			$mail = $mail->result();
+			
+			
+			
+			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+			
+			if(!empty($data['upload_file'])){
+				foreach ($data['upload_file']['name'] as $file) {
+					
+					$dataDB = array(
+				   		'fichier_uri' => $file,
+				   		'mail_id' => $mail[0]->id,
+					);
+					$this->db->insert('fichier', $dataDB); 
+					
+				}
+				
+			}
 			redirect('saved_mail/'.$token);
 
 		}
@@ -120,9 +141,9 @@ class FrontController extends CI_Controller {
 			
 			$data['mail_type'] = $this->input->post('mail_type');
 			
-			$data['upload_file']= $this->session->userdata('upload_file');
+			$data['upload_file']= $this->db->select('*')->from('fichier')->where('mail_id',$mail[0]->id)->get();
+			$data['upload_file'] = $data['upload_file']->result();
 			
-			var_dump($this->session->userdata('upload_file'));
 		
 		
 			$this->load->view('front/index', $data );
@@ -145,8 +166,21 @@ class FrontController extends CI_Controller {
 			$data['mail_text'] = $this->input->post('editor1');
 			$data['mail_type'] = $this->input->post('mail_type');
 			
-
+			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
+			$mail = $mail->result();
 			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+			if(!empty($data['upload_file'])){
+				foreach ($data['upload_file']['name'] as $file) {
+					
+					$dataDB = array(
+				   		'fichier_uri' => $file,
+				   		'mail_id' => $mail[0]->id,
+					);
+					$this->db->insert('fichier', $dataDB); 
+					
+				}
+				
+			}
 			// $this->my_multupload->do_upload('./public/uploads/import_html','import');
 			
 		

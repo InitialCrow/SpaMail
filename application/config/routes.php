@@ -66,11 +66,12 @@ $route['translate_uri_dashes'] = FALSE;
 
 // route dashboard
 $route['dashboard'] = 'adminController/index';
-$route['dashboard/(:any)/delete/(:any)'] = 'adminController/delete/$1/$2';
+$route['dashboard/adress/(:any)/delete/(:any)'] = 'adminController/delete/$1/$2';
 $route['dashboard/list'] = 'adminController/indexList';
 
 $route['dashboard/adress/(:any)'] = 'adminController/showList/$1';
 $route['dashboard/adress/edit_list/(:any)'] = 'adminController/edit/$1';
+$route['dashboard/adress/add/index'] = 'adminController/addList';
 $route['dashboard/list/pannel'] = 'adminController/listPannel';
 $route['dashboard/edit_list/(:any)/saveAdress'] = 'adminController/saveAdress/$1';
 $route['dashboard/list/add'] = 'adminController/addList';

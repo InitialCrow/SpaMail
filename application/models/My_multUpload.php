@@ -4,34 +4,45 @@
 
 
 			// Count # of uploaded files in array
-			$total = count($_FILES[$inputName]['name']);
 
-			// Loop through each file
-			for($i=0; $i<$total; $i++) {
-				$ext = pathinfo($_FILES[$inputName]['name'][$i] , PATHINFO_EXTENSION);
-				$newName = $this->randomString().".$ext";
-				
-				$_FILES[$inputName]['name'][$i]= $newName;
-			
-	
-				//Get the temp file path
-				$tmpFilePath = $_FILES[$inputName]['tmp_name'][$i];
+		
+				if(!empty($_FILES[$inputName]['name'][0])){
+					$total = count($_FILES[$inputName]['name']);
 
-				//Make sure we have a filepath
-				if ($tmpFilePath != ""){
-					//Setup our new file path
-					$newFilePath = $path .'/'. $_FILES[$inputName]['name'][$i];
-					
-					//Upload the file into the temp dir
-					if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+					// Loop through each file
+					for($i=0; $i<$total; $i++) {
+						$ext = pathinfo($_FILES[$inputName]['name'][$i] , PATHINFO_EXTENSION);
+						$newName = $this->randomString().".$ext";
 						
-					//Handle other code here
+						$_FILES[$inputName]['name'][$i]= $newName;
+					
+			
+						//Get the temp file path
+						$tmpFilePath = $_FILES[$inputName]['tmp_name'][$i];
 
+						//Make sure we have a filepath
+						if ($tmpFilePath != ""){
+							//Setup our new file path
+							$newFilePath = $path .'/'. $_FILES[$inputName]['name'][$i];
+							
+							//Upload the file into the temp dir
+							if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+								
+							//Handle other code here
+
+							}
+						}	
 					}
-				}	
-			}
-			$file = $_FILES[$inputName];
-			return $file;
+					$file = $_FILES[$inputName];
+					return $file;
+				}
+				else{
+				
+					return null;
+				}
+				
+			
+			
 		}
 		
 		public function randomString($length = 15) {

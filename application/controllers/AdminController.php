@@ -64,7 +64,7 @@ class AdminController extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 			
 
-			$dataDash['list_select'] = $this->input->post('dest');
+			$dataDash['list_select'] = $this->input->post('libelle');
 			if(empty($dataDash['list_select'])){
 				$adresse = $this -> db -> select('*')->from('adresse')->where('liste_destinataire_id',$id)->get();
 				$adresse = $adresse->result();
@@ -142,31 +142,38 @@ class AdminController extends CI_Controller {
 	}
 	public function addList(){
 		if($this->session->userdata('logged_in')){
-
-
-
+			
 			$dataDash['libelle'] = $this->input->post('libelle');
 	   		$dataDash['prenom'] = $this->input->post('prenom');
 	   		$dataDash['nom'] = $this->input->post('nom');
 	   		$dataDash['email'] = $this->input->post('email');
-			
-			$dataDB_list = array(
-			   'libelle'=>$dataDash['libelle']
-			);
-			$this->db->insert('liste_destinataire', $dataDB_list);
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
+
+			if($list->num_rows()<0){
+
+				$dataDB_list = array(
+			   		'libelle'=>$dataDash['libelle']
+				);
+				$this->db->insert('liste_destinataire', $dataDB_list);
+				$newList = true;
+			}
+			var_dump($dataDash['libelle']);
 			$list = $list->result();
-
-
-			$dataDB_adress = array(
-			   'email' => $dataDash['email'],
-			   'liste_destinataire_id' => $list[0]->id,
-			   'prenom' =>$dataDash['prenom'],
-			   'nom' =>$dataDash['nom'],
-			);
 			
-
-			$this->db->insert('adresse', $dataDB_adress);
+			
+			// $list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
+			
+			
+			for($i=0; $i<count($dataDash['prenom']); $i++){
+				$dataDB_adress = array(
+				   'email' => $dataDash['email'][$i],
+				   'liste_destinataire_id' => $list[0]->id,
+				   'prenom' =>$dataDash['prenom'][$i],
+				   'nom' =>$dataDash['nom'][$i],
+				);
+				$this->db->insert('adresse', $dataDB_adress);
+			}
+			
 			$adress = $this->db->select('*')->from('adresse')->where('liste_destinataire_id',$list[0]->id)->get();
 			$adress = $adress->result();
 			
@@ -175,9 +182,14 @@ class AdminController extends CI_Controller {
 					'adresse_id'=>$adress[0]->id
 
 				);
-			var_dump($adress[0]->id);
+			
 			$this->db->where('id', $adress[0]->liste_destinataire_id);
 			$this->db->update('liste_destinataire', $dataDB);
+			if(!empty($newList)){
+				redirect('dashboard/list');
+			}
+
+			
 			
 		}
 	}

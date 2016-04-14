@@ -22,13 +22,13 @@
 
   	<div class="dashboardList wrapper">
   		  <header>
-          <h1 class="title"> Dashboard envoiMail v-- 0.2 </h1>  
+          <h1 class="title"> Dashboard envoiMail v-- 0.8 </h1>  
         </header>
         <?php include('./application/views/partials/partial.nav.php'); ?>
         <form class="adminForm" method='post' enctype='multipart/form-data' action="<?php if(!empty($list)) echo base_url('dashboard/adress').'/'.$list[0]->id ?>"  >
               <label for="dest">listes des destinataires</label>
               <p class="warning">choisir une liste pour voir les details</p>
-        			<select name="dest" class="field form-control" onchange="this.form.submit()">
+        			<select name="libelle" class="field form-control" onchange="this.form.submit()">
                
                   <?php  
                         if(!empty($list_select) || isset($list_select)){
@@ -73,7 +73,30 @@
                   }
 
                  ?>
+                  <div class="row">
+                          <div class="col-xs-3 center-block email_input rowData">
+                           
+                            
+                          </div>
 
+                          
+                          <div class="col-xs-3 center-block nom_input  rowData ">
+                         
+                            
+
+                          </div>
+                          <div class="col-xs-3 center-block prenom_input rowData ">
+                            
+                            
+                          </div>
+                          
+                          <div class="col-xs-3 center-block option_input rowData">
+                           
+                            
+                          </div>
+                    </div>
+
+                    <button class="btn btn-default add_adress_button" type="submit">+</button>
         </form>
         <a class="back-page btn btn-default" href="<?php echo base_url('dashboard/list/pannel') ?>"> ajouter une liste de destinataire </a>
  

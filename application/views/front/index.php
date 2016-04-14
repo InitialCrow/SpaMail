@@ -113,12 +113,12 @@
 							<?php 
 								
 
-								if(!empty($upload_file) || isset($upload_file)){
-									
+								if(!empty($upload_file['type'][0]) || isset($upload_file)){
+								
 										
-									foreach ($upload_file['name'] as $file_name) {
+									foreach ($upload_file as $file_name) {
 										
-										echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$file_name." alt=\"image en apreçu des pièces jointes\"><p>".$file_name ."</p>";
+										echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$file_name->fichier_uri." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->fichier_uri ."</p>";
 									}
 									
 									
@@ -148,7 +148,7 @@
 				        		<p>Fichier coprs du mail</p>
 				        		<p>Images</p>
 				        		<p> <?php if(!empty($upload_file) || isset($upload_file)){
-									echo count($upload_file['name'])."Pièces jointes";
+									echo count($upload_file)."Pièces jointes";
 				        				}
 				        				else {echo "Pas de pièces jointes";} 
 				        			?></p>
