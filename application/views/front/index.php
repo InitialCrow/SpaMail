@@ -56,29 +56,7 @@
 
 				        </div>	
 			        </section>
-			        <section class="test">
-				        <div class="wrapper">
-				        	<h2 class="title-form">Test</h2><div class="container">
-				        	<label for="receive-test">Destinataires pour le test</label>
-				        	<select name="receive-test" class="field">
-								<?php  
-					        			if(!empty($dest_test) || isset($dest_test)){
-					        				foreach ($dest_test as $dest) {
-					        					if($dest->libelle === $dest_mail){
-					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
-					        					}
-					        					echo "<option value=\"$dest->adresse_id\">$dest->libelle</option>";
-					        					
-				
-											}
-					        			}
-					        			else {
-					        				echo "pas de destinataire test enregistré";
-					        			}
-								?>
-							</select></div>
-						</div>
-			        </section>
+			  
 			        <section class="header">
 				        <div class="wrapper">
 				        	<h2 class="title-form">En tête</h2><div class="container">
@@ -155,27 +133,27 @@
 				        	</div></div>
 				        </div>
 			        </section>
-			        <section class="send-test">
-			       	 	<div class="wrapper">
-				        	<h2 class="title-form">Envoi test</h2><div class="container">
-				        	<p>liste dest <span class="under">(nb enregistremnt)</span> </p>
-				        	
-				        	<button type="submit">Valider</button></div>
-				        </div>
-			        </section>
 			        <section class="send">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Envoi</h2><div class="container">
 				        	<p>liste dest<span class="under">(nb enregistremnt)</span> </p>
-				        	<button type="submit">Valider</button></div>
+				        	<button type="submit" class="send-button">Valider</button></div>
 				        </div>
 			        </section>
 			        <section class="send-renderer">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Compte rendu d'envoi</h2><div class="container">
-				        	<p>nb enregistrements</p>
-				        	<p>nb envoyés</p>
-				        	<p>nb error</p></div>
+				        	<?php 
+				        	if(!empty($logs)){
+				        	
+				        			echo 
+				        					"<p>".count($logs)."envoyés</p>";
+				        					// <p>$logs->error error</p></div>";
+				        		
+				        	}
+
+				        	 ?>
+				        	
 				        </div>
 				    </section>
 				</form>

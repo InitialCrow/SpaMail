@@ -61,7 +61,6 @@ class FrontController extends CI_Controller {
 			$data['dest_test'] = $dest_list->from('liste_destinataire')->where('libelle','test')->get()->result();
 
 			$data['dest_mail'] = $this->input->post('dest');
-	   		$data['test'] = $this->input->post('receive_test');
 			$data['mail_subject'] = $this->input->post('subject');
 			$data['mail_sender'] = $this->input->post('expediant');
 			$data['mail_sender_email'] = $this->input->post('email-expediant');
@@ -123,16 +122,17 @@ class FrontController extends CI_Controller {
 	}
 	public function rdyToSend($token){
 		if($this->session->userdata('logged_in')){
+
 			$data['token'] = $token;
 			$mail = $this -> db -> select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
-			
+			$data['logs'] = $this->db->select('*')->from('log_envoi')->where('mail_id',$mail[0]->id)->get();
+			$data['logs'] = $data['logs']->result(); 
 			$dest_list = $this -> db -> select('*')->from('liste_destinataire');
 			$data['dest_list'] = $dest_list->get()->result();
 			$data['dest_test'] = $dest_list->from('liste_destinataire')->where('libelle','test')->get()->result();
 
 			$data['dest_mail'] = $this->input->post('dest');
-	   		$data['test'] = $this->input->post('receive_test');
 			$data['mail_subject'] = $mail[0]->sujet;
 			$data['mail_sender'] = $mail[0]->nom;
 			$data['mail_sender_email'] = $mail[0]->email;
@@ -156,11 +156,10 @@ class FrontController extends CI_Controller {
 			
 			
 			$data['token'] = $token;
-			$data['dest_mail'] = $this->input->post('dest');
-			$data['test'] = $this->input->post('receive_test');
-			$data['mail_subject'] = $this->input->post('subject');
-			$data['mail_sender'] = $this->input->post('expediant');
-			$data['mail_sender_email'] = $this->input->post('email-expediant');
+			$data['dest_mail'] = trim($this->input->post('dest'));
+			$data['mail_subject'] = trim($this->input->post('subject'));
+			$data['mail_sender'] = trim($this->input->post('expediant'));
+			$data['mail_sender_email'] = trim($this->input->post('email-expediant'));
 			
 			
 			$data['mail_text'] = $this->input->post('editor1');
@@ -169,20 +168,29 @@ class FrontController extends CI_Controller {
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
 			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+			$data['logs'] = $this->db->select('*')->from('log_envoi')->where('mail_id',$mail[0]->id)->get();
+			$data['logs'] = $data['logs']->result();
+			$i=0;
 			if(!empty($data['upload_file'])){
 				foreach ($data['upload_file']['name'] as $file) {
+					
 					
 					$dataDB = array(
 				   		'fichier_uri' => $file,
 				   		'mail_id' => $mail[0]->id,
 					);
+					
 					$this->db->insert('fichier', $dataDB); 
+
 					
 				}
 				
 			}
 			// $this->my_multupload->do_upload('./public/uploads/import_html','import');
-			
+			$dataDB2= array(
+						'enregistrement'=> $i++
+						);
+			$this->db->insert('log_envoi', $dataDB2); 
 		
 			$this->session->set_userdata($data);
 

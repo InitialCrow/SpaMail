@@ -76,6 +76,9 @@ $route['dashboard/list/pannel'] = 'adminController/listPannel';
 $route['dashboard/edit_list/(:any)/saveAdress'] = 'adminController/saveAdress/$1';
 $route['dashboard/list/add'] = 'adminController/addList';
 
+//mail
+$route['saved_mail/send_test/(:any)'] = 'mailController/sendMail/$1';
+
 
 
 //route for cli

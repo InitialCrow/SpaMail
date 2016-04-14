@@ -1,7 +1,12 @@
 'use strict'; // use strict mode of js
 $(document).ready(function(){
+
 	switchForm('.indexForm','.add_receive_button','add_receive.php');//form, button, url
 	switchForm('.indexForm','.sav_mail','saved_mail');
+
+	
+	
+
 	checkDelete('.delete');
 	checkDelete('.deleteAd');
 	
@@ -10,10 +15,23 @@ $(document).ready(function(){
 	editAdress();
 	addListPannel('.add_list_button');
 	addListPannel('.add_adress_button',true);
-
+	sendMessage();
+	
 	
 });
+function sendMessage(){
+	$('.send-button').on('click',function(evt){
+		evt.preventDefault();
+		var $form = $('.indexForm')
+		var $token = $('.main-header').attr('data-token');
 
+		if($token != undefined && $token !=null ){
+			$form.attr('action','send_test/'+$token);
+			$form.submit();
+		}
+		
+	})
+}
 //change action form, button, url
 function switchForm(form, button, newUrl){
 	var url = window.location.href;
@@ -146,7 +164,7 @@ function checkDelete(idButton){
 			$yes.on('click', function(evt){
 				evt.preventDefault();
 				if( $id_html[$id_html.length-1] ==='delete'){
-					$url = 'dashboard/'+$id+'/delete/'+$type;
+					$url = 'dashboard/adress/'+$id+'/delete/'+$type;
 					// $('.adminForm').attr('action','dashboard/'+$id+'/delete/'+$type);
 				}
 				if( $id_html[$id_html.length-1] === 'deleteAd'){
@@ -239,7 +257,7 @@ function addListPannel(button, submit_mode){
 					error : function(msg) {
 						console.log(msg);
 					}
-    				});
+    			});
 			});
 		i++;	
 		})

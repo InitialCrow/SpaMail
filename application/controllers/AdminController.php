@@ -149,16 +149,18 @@ class AdminController extends CI_Controller {
 	   		$dataDash['email'] = $this->input->post('email');
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
 
-			if($list->num_rows()<0){
-
+			if(!empty($list)){
+				
 				$dataDB_list = array(
 			   		'libelle'=>$dataDash['libelle']
 				);
 				$this->db->insert('liste_destinataire', $dataDB_list);
+				$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
+
 				$newList = true;
 			}
-			var_dump($dataDash['libelle']);
 			$list = $list->result();
+			
 			
 			
 			// $list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
