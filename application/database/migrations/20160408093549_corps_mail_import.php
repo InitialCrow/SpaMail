@@ -1,6 +1,6 @@
 <?php
 
-class Migration_image extends CI_Migration {
+class Migration_corps_mail_import extends CI_Migration {
     private $servername = 'localhost';
     private $username = 'root';
     private $password = NULL;
@@ -31,10 +31,10 @@ class Migration_image extends CI_Migration {
 
             )';*/
 
-            $this->sql = 'CREATE TABLE image (
+            $this->sql = 'CREATE TABLE corps_mail_import (
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 mail_id INT(11) UNSIGNED,
-                image_uri VARCHAR(150) NOT NULL,
+                uri VARCHAR(150) NOT NULL,
                 CONSTRAINT image_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON DELETE SET NULL
 
                
@@ -53,7 +53,7 @@ class Migration_image extends CI_Migration {
     }
 
     public function down() {
-        $this->sql= $conn->prepare("DROP TABLE image");
+        $this->sql= $conn->prepare("DROP TABLE corps_mai_import");
         $conn->exec($this->sql);
     }
 

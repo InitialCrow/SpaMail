@@ -1,6 +1,7 @@
 'use strict'; // use strict mode of js
 $(document).ready(function(){
 
+	
 	switchForm('.indexForm','.add_receive_button','add_receive.php');//form, button, url
 	switchForm('.indexForm','.sav_mail','saved_mail');
 
@@ -11,7 +12,6 @@ $(document).ready(function(){
 	checkDelete('.deleteAd');
 	
 
-	chooseTypeMail.init();
 	editAdress();
 	addListPannel('.add_list_button');
 	addListPannel('.add_adress_button',true);
@@ -53,84 +53,12 @@ function switchForm(form, button, newUrl){
 		}
 		else{
 			$form.attr('action', window.location.href + '/edit');
-			
 		}
 	});
 
 }
 
-var chooseTypeMail = {
-	'html_mode':false,
-	'editor_mode':false,
-	'$listener' : $('.type'),
 
-	'$alert_msg':[$('.warning')],
-	'$editor' : null,
-	switchHtml : function(){
-		console.log('showWarning activated')
-		if(this.html_mode === true){
-			this.$alert_msg[0].css({
-				'transition':'opacity, 1s',
-				'opacity':'1'
-			});
-
-		}
-		else{
-			this.$alert_msg[0].css({
-				'transition':'opacity, 1s',
-				'opacity':'0'
-			});
-		}
-
-	},
-	switchEditor  : function(){
-
-		if(this.editor_mode === true){
-			this.$editor = CKEDITOR.replace( 'editor1' );
-			this.$editor.id = '#cke_editor1';
-			
-		}
-		else{
-			console.log('delete');
-			if(this.$editor !=null || this.$edior != undefined){
-
-				this.$editor.destroy();
-			}
-			
-		}
-	},
-	init : function(){
-		var self = this;
-		this.$listener.on('click',function(evt){
-		
-			var type = $(this).val();
-
-			console.log(type);
-			if(type === 'html'){
-				self.editor_mode = false;
-				self.html_mode = true;
-				$('.import').css({
-					'transition':'opacity, 1s',
-					'opacity':'1'
-				})
-
-				
-			}
-			if(type === 'text'){
-				self.html_mode = false;
-				self.editor_mode = true;
-				$('.import').css({
-					'transition':'opacity, 1s',
-					'opacity':'0'
-				})
-				
-			}
-				self.switchHtml();
-				self.switchEditor();
-			
-		})
-	}
-}
 function checkDelete(idButton){
 	var $button = $(idButton);
 	var confirmMsg = '<p>êtes vous sure de vouloir supprimer cette élément</p>';
@@ -232,9 +160,9 @@ function addListPannel(button, submit_mode){
 			evt.preventDefault();
 			
 
-			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"></input>"
-			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"></input>"
-			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"></input>"
+			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\" form-control prenom\"placeholder=\"jhon\"></input>"
+			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\" form-control nom\"placeholder=\"Do\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\" form-control email\"placeholder=\"jhondo@hotmail.fr\"></input>"
 			var optionInput =  "<button type=\"submit\" class=\"add-new-adress btn btn-default\">ajouter à la liste</burron>"
 			$emailContainer.append(emailInput);
 			$nomContainer.append(nomInput);
@@ -267,9 +195,9 @@ function addListPannel(button, submit_mode){
 		$button.on('click',function(evt){
 			evt.preventDefault();
 			i++;
-			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"></input>"
-			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"></input>"
-			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"></input>"
+			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"placeholder=\"jhon\"></input>"
+			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"placeholder=\"Do\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"placeholder=\"jhondo@hotmail.com\"></input>"
 			
 			
 			 $prenomContainer.append(prenomInput);
@@ -311,6 +239,78 @@ function addListPannel(button, submit_mode){
 // 	})
 // };
 
+// var chooseTypeMail = {
+// 	'html_mode':false,
+// 	'editor_mode':false,
+// 	'$listener' : $('.type'),
+
+// 	'$alert_msg':[$('.warning')],
+// 	'$editor' : null,
+// 	switchHtml : function(){
+// 		console.log('showWarning activated')
+// 		if(this.html_mode === true){
+// 			this.$alert_msg[0].css({
+// 				'transition':'opacity, 1s',
+// 				'opacity':'1'
+// 			});
+
+// 		}
+// 		else{
+// 			this.$alert_msg[0].css({
+// 				'transition':'opacity, 1s',
+// 				'opacity':'0'
+// 			});
+// 		}
+
+// 	},
+// 	switchEditor  : function(){
+
+// 		if(this.editor_mode === true){
+// 			this.$editor = CKEDITOR.replace( 'editor1' );
+// 			this.$editor.id = '#cke_editor1';
+			
+// 		}
+// 		else{
+// 			console.log('delete');
+// 			if(this.$editor !=null || this.$edior != undefined){
+
+// 				this.$editor.destroy();
+// 			}
+			
+// 		}
+// 	},
+// 	init : function(){
+// 		var self = this;
+// 		this.$listener.on('click',function(evt){
+		
+// 			var type = $(this).val();
+
+// 			console.log(type);
+// 			if(type === 'html'){
+// 				self.editor_mode = false;
+// 				self.html_mode = true;
+// 				$('.import').css({
+// 					'transition':'opacity, 1s',
+// 					'opacity':'1'
+// 				})
+
+				
+// 			}
+// 			if(type === 'text'){
+// 				self.html_mode = false;
+// 				self.editor_mode = true;
+// 				$('.import').css({
+// 					'transition':'opacity, 1s',
+// 					'opacity':'0'
+// 				})
+				
+// 			}
+// 				self.switchHtml();
+// 				self.switchEditor();
+			
+// 		})
+// 	}
+// }
 
 
 

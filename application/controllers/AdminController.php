@@ -18,7 +18,10 @@ class AdminController extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
+	public function __construct(){
+		parent::__construct();
+		// $this->load->model('my_exelextract');
+	}
 
 	public function index()
 	{
@@ -147,6 +150,9 @@ class AdminController extends CI_Controller {
 	   		$dataDash['prenom'] = $this->input->post('prenom');
 	   		$dataDash['nom'] = $this->input->post('nom');
 	   		$dataDash['email'] = $this->input->post('email');
+	   		$dataDash['import_exel'] = $this->input->post('exel_import');
+	   		var_dump($dataDash['import_exel']);
+	   		// $dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['name']);
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
 
 			if(!empty($list)){
@@ -188,7 +194,7 @@ class AdminController extends CI_Controller {
 			$this->db->where('id', $adress[0]->liste_destinataire_id);
 			$this->db->update('liste_destinataire', $dataDB);
 			if(!empty($newList)){
-				redirect('dashboard/list');
+				// redirect('dashboard/list');
 			}
 
 			

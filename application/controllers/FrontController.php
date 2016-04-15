@@ -24,6 +24,8 @@ class FrontController extends CI_Controller {
 		$this->load->model('my_multupload');
 	}
  
+
+
 	public function index()
 	{
 		if($this->session->userdata('logged_in'))
@@ -35,10 +37,6 @@ class FrontController extends CI_Controller {
 			
 			$dest_list = $this -> db -> select('*')->from('liste_destinataire');
 			$data['dest_list'] = $dest_list->get()->result();
-			$data['dest_test'] = $dest_list->from('liste_destinataire')->where('libelle','test')->get()->result();
-
-
-
 
 			$this->load->view('front/index', $data );
 	   }
@@ -58,8 +56,6 @@ class FrontController extends CI_Controller {
 
 			$dest_list = $this -> db -> select('*')->from('liste_destinataire');
 			$data['dest_list'] = $dest_list->get()->result();
-			$data['dest_test'] = $dest_list->from('liste_destinataire')->where('libelle','test')->get()->result();
-
 			$data['dest_mail'] = $this->input->post('dest');
 			$data['mail_subject'] = $this->input->post('subject');
 			$data['mail_sender'] = $this->input->post('expediant');
@@ -69,12 +65,8 @@ class FrontController extends CI_Controller {
 			$data['mail_text'] = $this->input->post('editor1');
 			$data['mail_type'] = $this->input->post('mail_type');
 			
-
-
-			
-			
-			
 			$token = "";
+
 			$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
 			$max = count($characters) - 1;
 			for ($i = 0; $i < 15; $i++) {
@@ -98,9 +90,7 @@ class FrontController extends CI_Controller {
 			$this->db->insert('mail', $dataDB); 
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
-			
-			
-			
+
 			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
 			
 			if(!empty($data['upload_file'])){
@@ -130,7 +120,6 @@ class FrontController extends CI_Controller {
 			$data['logs'] = $data['logs']->result(); 
 			$dest_list = $this -> db -> select('*')->from('liste_destinataire');
 			$data['dest_list'] = $dest_list->get()->result();
-			$data['dest_test'] = $dest_list->from('liste_destinataire')->where('libelle','test')->get()->result();
 
 			$data['dest_mail'] = $this->input->post('dest');
 			$data['mail_subject'] = $mail[0]->sujet;
@@ -139,13 +128,10 @@ class FrontController extends CI_Controller {
 			
 			$data['mail_text']= $mail[0]->corps_mail;
 			
-			$data['mail_type'] = $this->input->post('mail_type');
+			$data['mail_type'] = $mail[0]->type;
 			
 			$data['upload_file']= $this->db->select('*')->from('fichier')->where('mail_id',$mail[0]->id)->get();
 			$data['upload_file'] = $data['upload_file']->result();
-			
-		
-		
 			$this->load->view('front/index', $data );
 
 		}
@@ -164,6 +150,7 @@ class FrontController extends CI_Controller {
 			
 			$data['mail_text'] = $this->input->post('editor1');
 			$data['mail_type'] = $this->input->post('mail_type');
+			
 			
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
@@ -186,7 +173,6 @@ class FrontController extends CI_Controller {
 				}
 				
 			}
-			// $this->my_multupload->do_upload('./public/uploads/import_html','import');
 			$dataDB2= array(
 						'enregistrement'=> $i++
 						);

@@ -17,19 +17,16 @@
         </style>
      
         <link rel="stylesheet" href="<?php echo base_url('public/css/style.css') ?>">
-
-
     </head>
     <body>
     	<div class="home">
 	    	<div class="wrapper">
 	    		<header class="main-header" data-token ="<?php if(!empty($token)) echo "$token"; ?>"> 
 	    			<div class="wrapper">
-			        	<h1 id="title">Envoi<span class="blue">Mail@</span></h1>
+			        	<a href="<?php echo base_url('/home') ?>"><h1 id="title">Envoi<span class="blue">Mail@</span></h1></a>
 					</div>
 					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
 		        </header>
-
 		        <form class="indexForm" method='post' enctype='multipart/form-data' action='' >
 			        <section class="dest">
 			        	<div class="wrapper">
@@ -55,8 +52,7 @@
 				        	<button type="submit" class="add_receive_button">+</button>
 
 				        </div>	
-			        </section>
-			  
+			        </section>			  
 			        <section class="header">
 				        <div class="wrapper">
 				        	<h2 class="title-form">En tête</h2><div class="container">
@@ -72,24 +68,41 @@
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Type de mail</h2><div class="container">
 				        	<label for="mail_type" class="hidden">importer ou écrire un mail</label>
-							<input type="radio" value="html" name="mail_type" class="type" >importer html
-							<input type="radio" value="text" name="mail_type" class="type" >ecrire le mail
-							<p class="warning">Si le mail html comportedes variables (publipostage) <b>Attention</b>- les champs doivent êtres en UTF-8 Les variables doivent être mises entre balises <..> dans le texte html</p></div>
-						</div>
+				        	<?php 
+				        		if(!empty($mail_type) && isset($mail_type)){
+				        			
+				        			if($mail_type === "text"){
+				        				echo " 
+						        			<input type=\"radio\" value=\"html\" name=\"mail_type\" class=\"type\" > type html
+											<input type=\"radio\" value=\"text\" name=\"mail_type\" class=\"type\" checked > type text 
+											";
+				        			}
+				        			else if($mail_type === "html"){
+				        				echo " 
+						        			<input type=\"radio\" value=\"html\" name=\"mail_type\" class=\"type\" checked > type html
+											<input type=\"radio\" value=\"text\" name=\"mail_type\" class=\"type\" > type text 
+											";
+				        			}
+				        			
+				        		}
+				        		else{
+				        			
+				        			echo " 
+					        			<input type=\"radio\" value=\"html\" name=\"mail_type\" class=\"type\" > type html
+										<input type=\"radio\" value=\"text\" name=\"mail_type\" class=\"type\" > type text 
+										";
+				        		}
 
+
+				        	 ?>
+						</div>
 			        </section>
 			        <section class="mail">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Mail</h2><div class="container">
-				        	<label for="import" class="import">corps du mail</label>
-							<input type="file" class="file import" name="import" >
-
-						
-
 				        	<label for="file">Pièces Jointes</label>
 							<input type="file" class="file " name=" pieces[]" multiple>
 							<?php 
-								
 
 								if(!empty($upload_file['type'][0]) || isset($upload_file)){
 								
@@ -98,46 +111,22 @@
 										
 										echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$file_name->fichier_uri." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->fichier_uri ."</p>";
 									}
-									
-									
-									
+
 								}
 
 							 ?>
-							
-							
+
 							</div>
-							<textarea name='editor1' class='editor1 fade'><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
+							<textarea name='editor1' class='editor1'><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
 							<button type="submit" class="validate sav_mail">valider</button>
 						</div>
 			        </section>
-			        <section class="mail-renderer">
-			        	<div class="wrapper">
-				        	<h2 class="title-form">Prévisualisation</h2><div class="container">
-				        	<div class="renderer">
-				        	<?php 
-				        		if(!empty($mail_text) || isset($mail_text)){
-				        			echo $mail_text;
-				        		}
-				        	 ?>
-				        		
-				        	</div>
-				        	<div class="info">
-				        		<p>Fichier coprs du mail</p>
-				        		<p>Images</p>
-				        		<p> <?php if(!empty($upload_file) || isset($upload_file)){
-									echo count($upload_file)."Pièces jointes";
-				        				}
-				        				else {echo "Pas de pièces jointes";} 
-				        			?></p>
-				        	</div></div>
-				        </div>
-			        </section>
+			        
 			        <section class="send">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Envoi</h2><div class="container">
 				        	<p>liste dest<span class="under">(nb enregistremnt)</span> </p>
-				        	<button type="submit" class="send-button">Valider</button></div>
+				        	<button type="submit" class="send-button">Envoyer</button></div>
 				        </div>
 			        </section>
 			        <section class="send-renderer">
@@ -147,7 +136,7 @@
 				        	if(!empty($logs)){
 				        	
 				        			echo 
-				        					"<p>".count($logs)."envoyés</p>";
+				        					"<p>".count($logs)." envoyés</p>";
 				        					// <p>$logs->error error</p></div>";
 				        		
 				        	}
@@ -168,5 +157,11 @@
      
         <script src="<?php echo base_url('public/js/plugin/ckeditor/ckeditor.js')?>"></script>
         <script src="<?php echo base_url('public/js/main.js')?>"></script>
+        <script type="text/javascript">
+        	
+        	$(document).ready(function(){
+        		CKEDITOR.replace( 'editor1' );
+        	});
+        </script>
     </body>
 </html>

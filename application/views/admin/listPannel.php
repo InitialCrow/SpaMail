@@ -34,27 +34,27 @@
 
               <div class="row">
                 
-                <div class="col-xs-4 center-block title">prenom</div>
-                <div class="col-xs-4 center-block title">nom</div>
                 <div class="col-xs-4 center-block title">email</div>
+                <div class="col-xs-4 center-block title">nom</div>
+                <div class="col-xs-4 center-block title">prenom</div>
              
                 
               </div>
 
               <div class="row">
-
-                <div class="col-xs-4 center-block prenom_input rowData ">
-                  
-                  <input name="prenom[]" class="form-control prenom"></input>
+                <div class="col-xs-4 center-block email_input rowData">
+                 
+                  <input name="email[]" type="email" class="form-control email"></input>
                 </div>
+                
                 <div class="col-xs-4 center-block nom_input  rowData ">
                
                   <input name="nom[]" class="form-control nom"></input>
 
                 </div>
-                <div class="col-xs-4 center-block email_input rowData">
-                 
-                  <input name="email[]" type="email" class="form-control email"></input>
+                <div class="col-xs-4 center-block prenom_input rowData ">
+                  
+                  <input name="prenom[]" class="form-control prenom"></input>
                 </div>
               </div>
               <button class="btn btn-default add_list_button" type="submit">+</button>
@@ -62,10 +62,10 @@
 
               
               
-              
+              <input type="file" name="exel_import"></input>
               <button class="btn btn-default" type="submit">Ajouter</button>
 
-              <input type="file"></input>
+              
 
         </form>
         

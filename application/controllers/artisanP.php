@@ -61,12 +61,19 @@ class ArtisanP extends CI_Controller {
     }
 
     public function seed($name) {
-        $cmd = "php application/database/seeds/$name.php";
-        echo shell_exec($cmd);
-        
-
-
-        
+        if($name ==="all"){
+            foreach (glob("application/database/seeds/*.php") as $filename)
+            {
+                $cmd = "php ".$filename;
+                var_dump($filename);
+                echo shell_exec($cmd);
+            }
+        }
+        else{
+            $cmd = "php application/database/seeds/$name.php";
+            echo shell_exec($cmd);
+        }
+        echo"seed run done !";
     }
 
     protected function make_migration_file($name) {
