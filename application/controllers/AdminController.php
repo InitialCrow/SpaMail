@@ -20,7 +20,7 @@ class AdminController extends CI_Controller {
 	 */
 	public function __construct(){
 		parent::__construct();
-		// $this->load->model('my_exelextract');
+		$this->load->model('my_exelextract');
 	}
 
 	public function index()
@@ -150,9 +150,8 @@ class AdminController extends CI_Controller {
 	   		$dataDash['prenom'] = $this->input->post('prenom');
 	   		$dataDash['nom'] = $this->input->post('nom');
 	   		$dataDash['email'] = $this->input->post('email');
-	   		$dataDash['import_exel'] = $this->input->post('exel_import');
-	   		var_dump($dataDash['import_exel']);
-	   		// $dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['name']);
+	   		$dataDash['import_exel'] = $_FILES['exel_import'];
+	   		$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
 
 			if(!empty($list)){
@@ -170,17 +169,30 @@ class AdminController extends CI_Controller {
 			
 			
 			// $list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
-			
-			
-			for($i=0; $i<count($dataDash['prenom']); $i++){
-				$dataDB_adress = array(
-				   'email' => $dataDash['email'][$i],
-				   'liste_destinataire_id' => $list[0]->id,
-				   'prenom' =>$dataDash['prenom'][$i],
-				   'nom' =>$dataDash['nom'][$i],
-				);
-				$this->db->insert('adresse', $dataDB_adress);
+			if(!empty($dataDash['import_exel'])){
+				for($i=0; $i<count($dataDash['import_exel']); $i++){
+		
+					$dataDB_adress = array(
+					   'email' => $dataDash['import_exel'][$i][0][0],
+					   'liste_destinataire_id' => $list[0]->id,
+					   'prenom' =>$dataDash['import_exel'][$i][0][1],
+					   'nom' =>$dataDash['import_exel'][$i][0][2],
+					);
+					$this->db->insert('adresse', $dataDB_adress);
+				}	
 			}
+			if(!empty($dataDash['email'])){
+				for($i=0; $i<count($dataDash['prenom']); $i++){
+					$dataDB_adress = array(
+					   'email' => $dataDash['email'][$i],
+					   'liste_destinataire_id' => $list[0]->id,
+					   'prenom' =>$dataDash['prenom'][$i],
+					   'nom' =>$dataDash['nom'][$i],
+					);
+					$this->db->insert('adresse', $dataDB_adress);
+				}
+			}
+			
 			
 			$adress = $this->db->select('*')->from('adresse')->where('liste_destinataire_id',$list[0]->id)->get();
 			$adress = $adress->result();
@@ -194,7 +206,7 @@ class AdminController extends CI_Controller {
 			$this->db->where('id', $adress[0]->liste_destinataire_id);
 			$this->db->update('liste_destinataire', $dataDB);
 			if(!empty($newList)){
-				// redirect('dashboard/list');
+				redirect('dashboard/list');
 			}
 
 			

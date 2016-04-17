@@ -1,85 +1,40 @@
 <?php  
-require_once './application/libraries/exel/Excel/reader.php';
+require_once './vendor/phpoffice/phpexcel/Classes/PHPExcel.php';
+require_once './vendor/phpoffice/phpexcel/Classes/PHPExcel/IOFactory.php';
 	Class My_exelExtract extends CI_Model{
 		private $data;
 		public function extract($file){
-			
-			$this->data = new Spreadsheet_Excel_Reader();
-			// ExcelFile($filename, $encoding);
-			
-
-			// Set output Encoding.
-			$this->data->setOutputEncoding('CP1251');
-
-			
-
-			 //if you want you can change 'iconv' to mb_convert_encoding:
-			 $this->data->setUTFEncoder('mb');
-
-			
-
-			
 
 
-			
-
-			 //By default rows & cols indeces start with 1
-			 //For change initial index use:
-			 $this->data->setRowColOffset(0);
-
-		
-
-
-		
-
-			 // Some function for formatting output.
-			 $this->data->setDefaultFormat('%.2f');
-			 //setDefaultFormat - set format for columns with unknown formatting
-
-			
-
-			 $this->data->setColumnFormat(4, '%.3f');
-			 //setColumnFormat - set format for column (apply only to number fields)
-
-
-			$this->data->read($file);
-
-			
-
-			 $this->data->sheets[0]['numRows']-//- count rows
-			 $this->data->sheets[0]['numCols']-// - count columns
-			 $this->data->sheets[0]['cells'][$i][$j]-// - data from $i-row $j-column
-
-			 $this->data->sheets[0]['cellsInfo'][$i][$j]-// - extended info about cell
-
-			    $this->data->sheets[0]['cellsInfo'][$i][$j]['type'] = "date" | "number" | "unknown";
-			        //if 'type' == "unknown" //- use 'raw' value, because  cell contain value with format '0.00';
-			    $this->data->sheets[0]['cellsInfo'][$i][$j]['raw'] = //value if cell without format
-			    $this->data->sheets[0]['cellsInfo'][$i][$j]['colspan'];
-			    $this->data->sheets[0]['cellsInfo'][$i][$j]['rowspan'];
-
-		
-
-
-			error_reporting(E_ALL ^ E_NOTICE);
-			
-			for ($i = 1; $i <= $this->data->sheets[0]['numRows']; $i++) {
-				for ($j = 1; $j <= $this->data->sheets[0]['numCols']; $j++) {
-					echo "".$this->data->sheets[0]['cells'][$i][$j]."<br>";
-				}
-				echo "\n";
-
+			try {
+			    $inputFileType = PHPExcel_IOFactory::identify($file);
+			    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+			    $objPHPExcel = $objReader->load($file);
+			} catch(Exception $e) {
+			    die('Error loading file "'.pathinfo($file,PATHINFO_BASENAME).'": '.$e->getMessage());
 			}
 
+			//  Get worksheet dimensions
+			$sheet = $objPHPExcel->getSheet(); 
+			$highestRow = $sheet->getHighestRow();
+			$highestColumn = $sheet->getHighestColumn();
+			$data = [];
+
+			//  Loop through each row of the worksheet in turn
+			for ($row = 1; $row <= $highestRow; $row++){ 
+			    //  Read a row of data into an array
+			    $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+			                                    NULL,
+			                                    TRUE,
+			                                    FALSE);
+			    //  Insert row data array into your database of choice here
+			    array_push($data,$rowData);
+			}
+			 return $data;
 			
-
-
-			echo "".$this->data->sheets[0]['cells'][1][1]."<br>";
-			echo "".$this->data->sheets[0]['cells'][1][2]."<br>";
-
-			print_r($this->data);
-			print_r($this->data->formatRecords);
-					}
-					
-				}
+			
+		}
+	}
+			
+			
 ?>

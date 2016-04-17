@@ -22,7 +22,7 @@
 
   	<div class="dashboardList wrapper">
   		  <header>
-          <h1 class="title"> Dashboard envoiMail v-- 0.8 </h1>  
+          <h1 class="title"> Dashboard envoiMail v-- 0.9 </h1>  
         </header>
         <?php include('./application/views/partials/partial.nav.php'); ?>
         <form class="adminForm" method='post' enctype='multipart/form-data' action="<?php if(!empty($list)) echo base_url('dashboard/adress').'/'.$list[0]->id ?>"  >
