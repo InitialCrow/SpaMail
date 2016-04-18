@@ -35,7 +35,7 @@ class Migration_corps_mail_import extends CI_Migration {
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 mail_id INT(11) UNSIGNED,
                 uri VARCHAR(150) NOT NULL,
-                CONSTRAINT image_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON DELETE SET NULL
+                CONSTRAINT image_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON delete CASCADE
 
                
 

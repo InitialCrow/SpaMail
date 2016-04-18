@@ -108,6 +108,11 @@ class FrontController extends CI_Controller {
 			redirect('saved_mail/'.$token);
 
 		}
+		else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   	}
 
 	}
 	public function rdyToSend($token){
@@ -135,6 +140,11 @@ class FrontController extends CI_Controller {
 			$this->load->view('front/index', $data );
 
 		}
+		else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   	}
 	}
 	public function edit($token){
 
@@ -199,5 +209,10 @@ class FrontController extends CI_Controller {
 			redirect('saved_mail/'.$data['token']);
 
 		}
+		else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   	}
 	}
 }

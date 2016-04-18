@@ -32,6 +32,11 @@ class AdminController extends CI_Controller {
 			
 	   		$this->load->view('admin/index',$dataDash);
 	   	}
+	   	else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   	}
 	}
 	public function delete($token, $type)
 	{
@@ -65,6 +70,11 @@ class AdminController extends CI_Controller {
 		
 			}	
    		}
+   		else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   	}
 	}
 
 	public function indexList(){
@@ -75,6 +85,11 @@ class AdminController extends CI_Controller {
 			
 	   		$this->load->view('admin/indexList',$dataDash);
 
+	   	}
+	   	else
+	   	{
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
 	   	}
 	}
 
@@ -115,6 +130,11 @@ class AdminController extends CI_Controller {
 			$this->load->view('admin/indexList',$dataDash);
 
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   }
 	}
 
 	public function edit($id){
@@ -125,6 +145,11 @@ class AdminController extends CI_Controller {
 			$dataDash['adress'] = $adress;
 			$this->load->view('admin/editAdress',$dataDash);
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   }
 	}
 
 	public function saveAdress($id){
@@ -151,6 +176,11 @@ class AdminController extends CI_Controller {
 			redirect('dashboard/adress/edit_list/'.$id);
 
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   }
 	}
 
 	public function listPannel(){
@@ -159,6 +189,11 @@ class AdminController extends CI_Controller {
 			
 			$this->load->view('admin/listPannel');
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   }
 	}
 	public function addList(){
 		if($this->session->userdata('logged_in')){
@@ -232,10 +267,12 @@ class AdminController extends CI_Controller {
 			$this->db->update('liste_destinataire', $dataDB);
 			if(isset($newList)){
 				// redirect('dashboard/list');
-			}
-
-			
-			
+			}	
 		}
+		else
+	   {
+	     //If no session, redirect to login page
+	     redirect('/', 'refresh');
+	   }
 	}
 }
