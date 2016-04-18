@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>EnvoiMail 1.0</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('vendor/twbs/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -20,10 +20,10 @@
   </head>
   <body>
 
-  	<div class="dashboard wrapper">
-  		  <header>
-          <h1 class="title"> Dashboard envoiMail v-- 0.9 </h1>  
-        </header>
+  	
+  		  <?php include('./application/views/partials/partial.header-admin.php'); ?>
+        
+        <div class="dashboard wrapper">
         <?php include('./application/views/partials/partial.nav.php'); ?>
         <form class="adminForm" method='post' enctype='multipart/form-data' action='' >
         			<div class="row">

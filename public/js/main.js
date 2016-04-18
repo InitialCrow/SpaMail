@@ -97,9 +97,11 @@ function checkDelete(idButton){
 				}
 				if( $id_html[$id_html.length-1] === 'deleteAd'){
 					$url = $id+'/delete/'+$type;
+					
 
 					// $('.adminForm').attr('action', $id+'/delete/'+$type);
 				}
+
 				$.ajax({
 					url: $url,
 					type:'POST',

@@ -28,13 +28,21 @@ class MailController extends CI_Controller {
 	public function sendMail($token)
 	{
 		if($this->session->userdata('logged_in')){
+
 			$data['list_select'] = $this->input->post('dest');
 	   		$mail = $this -> db -> select('*')->from('mail')->where('token',$token)->get();
 	   		$mail = $mail->result();
 
 	   		$destinataire = $this -> db -> select('*')->from('liste_destinataire')->where('libelle',$data['list_select'])->get();
 	   		$destinataire = $destinataire->result();
-
+	   		if($destinataire[0]->libelle === 'test'){
+	   			$dataDB= array(
+	   				'status'=>1,
+	   				'date_envoi'=>date (  'Y-m-d' )
+	   			);
+	   			$this-> db ->where('token', $token);
+	   			$this-> db ->update('mail',$dataDB);
+	   		}
 	   		$adresse = $this -> db -> select('*')->from('adresse')->where('liste_destinataire_id',$destinataire[0]->id)->get();
 	   		$adresse = $adresse->result();
 
@@ -52,7 +60,7 @@ class MailController extends CI_Controller {
 	   			);
 	   			$this->db->insert('log_envoi', $dataDB);
 	   			
-	   			$this->my_senderEmail->send($mail[0]->email, $value->email, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier);
+	   			$this->my_senderEmail->send($mail[0]->email, $value->email, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier, $mail[0]->type);
 	   		}
 	   		
 	   		

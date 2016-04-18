@@ -35,8 +35,8 @@ class Migration_adresse_log_envoi extends CI_Migration {
 
                 adresse_id INT(11) UNSIGNED,
                 log_envoi_id INT(11) UNSIGNED,
-                CONSTRAINT adresse_log_envoi_adresse_id_adresse_foreign FOREIGN KEY (adresse_id) REFERENCES adresse (id) ON DELETE SET NULL,
-                CONSTRAINT adresse_log_envoi_log_envoi_id_log_envoi_foreign FOREIGN KEY (log_envoi_id) REFERENCES log_envoi (id) ON DELETE SET NULL
+                CONSTRAINT adresse_log_envoi_adresse_id_adresse_foreign FOREIGN KEY (adresse_id) REFERENCES adresse (id) ON DELETE CASCADE,
+                CONSTRAINT adresse_log_envoi_log_envoi_id_log_envoi_foreign FOREIGN KEY (log_envoi_id) REFERENCES log_envoi (id) ON DELETE CASCADE
 
             )';
 

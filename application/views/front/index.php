@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>EnvoiMail 1.0</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -25,7 +25,7 @@
 	    			<div class="wrapper">
 			        	<a href="<?php echo base_url('/home') ?>"><h1 id="title">Envoi<span class="blue">Mail@</span></h1></a>
 					</div>
-					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Dashboard</a>
+					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Panneau de configuration</a>
 		        </header>
 		        <form class="indexForm" method='post' enctype='multipart/form-data' action='' >
 			        <section class="dest">

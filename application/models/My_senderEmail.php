@@ -1,17 +1,21 @@
 <?php  
 require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+require './config_mail.php';
 	Class My_senderEmail extends CI_Model{
 
-		public function send($exp, $dest, $nom, $sujet, $message, $fichier){
+		public function send($exp, $dest, $nom, $sujet, $message, $fichier, $type){
 			$mail = new PHPMailer;
-
+			
 			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'localhost';  // Specify main and backup SMTP servers
-			$mail->SMTPAuth = false;                               // Enable SMTP authentication
-		                          // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 1025;                                    // TCP port to connect to
+			$mail->Host = SMTP_HOST;  								// Specify main and backup SMTP servers
+			$mail->SMTPAuth = SMTP_AUTH;
+			$mail->Port = SMTP_PORT;
+			$mail->Username = SMTP_USERNAME;  // SMTP username
+			$mail->Password = SMTP_PASSWORD; // SMTP password                               // Enable SMTP authentication
+		                         								 	// Enable TLS encryption, `ssl` also accepted
+		                         								 	 // TCP port to connect to
 
 			$mail->setFrom($exp);
 			$mail->addAddress($dest);     
@@ -25,11 +29,19 @@ require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 				}
 			}
 
-			$mail->isHTML(true);                                  // Set email format to HTML
+			                                // Set email format to HTML
 
 			$mail->Subject = $sujet;
 			$mail->Body    = $message;
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			if($type === "html"){
+				
+				$mail->isHTML(true);  
+			}
+			if($type === "text"){
+				$mail->ContentType = 'text/plain'; 
+    			$mail->isHTML(false);
+			}
 
 			if(!$mail->send()) {
 			    echo 'Message could not be sent.';
@@ -38,32 +50,5 @@ require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 			    echo 'Message has been sent';
 			}
 		}
-
-		
-		
-		// public function send( $exp, $dest, $nom, $sujet, $message){
-		// 	ini_set('SMTP', 'localhost'); 
-		// 	ini_set('smtp_port', 1025); 
-			
-
-		// 	$passage_ligne = "\r\n";
-
-		// 			$passage_ligne = "\n";
-		
-			
-		// 	$header = "From:".$nom."<".$exp.">".$passage_ligne;
-		// 	$header .= "Reply-to:".$nom."<".$exp.">".$passage_ligne;
-		// 	$header .= "MIME-Version: 1.0".$passage_ligne;
-		// 	$header .= "Content-Type: multipart/mixed;".$passage_ligne;
-			
-		// 	$msg = $message;
-		// 	$msg .= "Content-type: text/html;charset=utf-8".$passage_ligne;;
-		
-			
-			
-		// 	return mail($dest,$sujet,$msg,$header);
-		// }
-		
-	
 	}
 ?>

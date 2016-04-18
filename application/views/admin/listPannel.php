@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>EnvoiMail 1.0</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('vendor/twbs/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -20,15 +20,14 @@
   </head>
   <body>
 
-  	<div class="dashboardListPannel wrapper">
-  		  <header>
-          <h1 class="title"> Dashboard envoiMail v-- 0.9 </h1>  
-        </header>
+  	
+  		  <?php include('./application/views/partials/partial.header-admin.php'); ?>
+        <div class="dashboardListPannel wrapper">
         <?php include('./application/views/partials/partial.nav.php'); ?>
         <form class="adminListPannelForm" method='post' enctype='multipart/form-data' action="<?php echo base_url('dashboard/list/add')?>"  >
-              <h2>ajouter des destinataires</h2>
+              
               <label for="libelle">nom de la liste</label>
-              <input type="text" name="libelle" class="form-control libelle"></input>
+              <input type="text" name="libelle" class="form-control libelle" placeholder="le nom de la liste..."></input>
 
 
 
@@ -44,17 +43,17 @@
               <div class="row">
                 <div class="col-xs-4 center-block email_input rowData">
                  
-                  <input name="email[]" type="email" class="form-control email"></input>
+                  <input name="email[]" type="email" class="form-control email" placeholder="JhonDo@exemple.com"></input>
                 </div>
                 
                 <div class="col-xs-4 center-block nom_input  rowData ">
                
-                  <input name="nom[]" class="form-control nom"></input>
+                  <input name="nom[]" class="form-control nom" placeholder="Do"></input>
 
                 </div>
                 <div class="col-xs-4 center-block prenom_input rowData ">
                   
-                  <input name="prenom[]" class="form-control prenom"></input>
+                  <input name="prenom[]" class="form-control prenom" placeholder="jhon"></input>
                 </div>
               </div>
               <button class="btn btn-default add_list_button" type="submit">+</button>
@@ -62,7 +61,7 @@
 
               
               
-              <input type="file" name="exel_import"></input>
+              <input type="file" name="exel_import" class="exel_import"></input>
               <button class="btn btn-default" type="submit">Ajouter</button>
 
               

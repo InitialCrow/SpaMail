@@ -37,7 +37,7 @@ class Migration_log_envoi extends CI_Migration {
                 enregistrement INT(11),
                 envoi INT(11),
                 error INT(11),
-                CONSTRAINT log_envoi_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON DELETE SET NULL               
+                CONSTRAINT log_envoi_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON DELETE CASCADE               
 
             )';
 

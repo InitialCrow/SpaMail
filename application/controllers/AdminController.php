@@ -36,7 +36,7 @@ class AdminController extends CI_Controller {
 	public function delete($token, $type)
 	{
 		if($this->session->userdata('logged_in')){
-
+			
 			if($type === "mail"){
 				$this->db->where('token',$token);
 				$this->db->delete('mail');
@@ -46,6 +46,12 @@ class AdminController extends CI_Controller {
 			if($type === "adress"){
 				$this->db->where('id',$token);
 				$this->db->delete('adresse');
+		
+			}
+			if($type === "list"){
+
+				$this->db->where('libelle', urldecode($token));
+				$this->db->delete('liste_destinataire');
 		
 			}	
    		}
@@ -151,7 +157,10 @@ class AdminController extends CI_Controller {
 	   		$dataDash['nom'] = $this->input->post('nom');
 	   		$dataDash['email'] = $this->input->post('email');
 	   		$dataDash['import_exel'] = $_FILES['exel_import'];
-	   		$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
+	   		if($dataDash['import_exel']['name'] !=''){
+	   			$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
+	   		}
+	   		
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
 
 			if(!empty($list)){
@@ -169,7 +178,8 @@ class AdminController extends CI_Controller {
 			
 			
 			// $list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
-			if(!empty($dataDash['import_exel'])){
+
+			if($dataDash['import_exel']['name']!=''){
 				for($i=0; $i<count($dataDash['import_exel']); $i++){
 		
 					$dataDB_adress = array(

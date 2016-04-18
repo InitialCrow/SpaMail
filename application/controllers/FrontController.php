@@ -187,7 +187,8 @@ class FrontController extends CI_Controller {
 			   'sujet' => $data['mail_subject'],
 			   'email' =>$data['mail_sender_email'],
 			   'nom' =>$data['mail_sender'],
-			   'corps_mail' => $data['mail_text']
+			   'corps_mail' => $data['mail_text'],
+			   'status'=>0
 
 			);
 
