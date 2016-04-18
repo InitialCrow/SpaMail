@@ -69,6 +69,22 @@ body{
 	font-family: "helvetica neue condense",Arial,Helvetica,sans-serif;
 	font-size: 1.8rem;
 }
+
+.login{
+	
+	max-width: 500px;
+	margin: 0 auto;
+}
+.login label{
+	margin: 20px 0;
+	display: block;
+	text-align: center;
+}
+.login .btn{
+	margin: 20px 0;
+	display: block;
+	text-align: center;
+}
 .home{
 	color: #8a8a8a;
 }

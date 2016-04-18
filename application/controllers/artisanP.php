@@ -65,7 +65,6 @@ class ArtisanP extends CI_Controller {
             foreach (glob("application/database/seeds/*.php") as $filename)
             {
                 $cmd = "php ".$filename;
-                var_dump($filename);
                 echo shell_exec($cmd);
             }
         }

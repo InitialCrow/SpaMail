@@ -60,6 +60,8 @@ $route['home'] = 'frontController/index';
 $route['saved_mail'] = 'frontController/save';
 $route['saved_mail/(:any)'] = "frontController/rdytosend/$1";
 $route['saved_mail/(:any)/edit'] = 'frontController/edit/$1';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

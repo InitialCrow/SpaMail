@@ -53,6 +53,16 @@ class AdminController extends CI_Controller {
 				$this->db->where('libelle', urldecode($token));
 				$this->db->delete('liste_destinataire');
 		
+			}
+			if($type === "upload"){
+				$mail = $this->db->select('*')->from('mail')->where('token', $token)->get();
+				$mail = $mail->result();
+				$this->db->where('mail_id', $mail[0]->id);
+				$this->db->delete('fichier');
+				redirect('saved_mail/'.$token);
+
+
+		
 			}	
    		}
 	}
@@ -103,6 +113,7 @@ class AdminController extends CI_Controller {
 			$dataDash['adress']= $adresse;
 			$dataDash['list'] = $list;
 			$this->load->view('admin/indexList',$dataDash);
+
 		}
 	}
 
@@ -156,31 +167,35 @@ class AdminController extends CI_Controller {
 	   		$dataDash['prenom'] = $this->input->post('prenom');
 	   		$dataDash['nom'] = $this->input->post('nom');
 	   		$dataDash['email'] = $this->input->post('email');
-	   		$dataDash['import_exel'] = $_FILES['exel_import'];
-	   		if($dataDash['import_exel']['name'] !=''){
-	   			$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
-	   		}
+	   		
 	   		
 			$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
-
-			if(!empty($list)){
+			$list = $list->result();
+			
+			
+			if(empty($list)){
 				
 				$dataDB_list = array(
 			   		'libelle'=>$dataDash['libelle']
 				);
 				$this->db->insert('liste_destinataire', $dataDB_list);
 				$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
-
 				$newList = true;
+				$list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
+				$list = $list->result();
 			}
-			$list = $list->result();
+			
 			
 			
 			
 			// $list = $this->db->select('*')->from('liste_destinataire')->where('libelle',$dataDash['libelle'])->get();
+			
 
-			if($dataDash['import_exel']['name']!=''){
-				for($i=0; $i<count($dataDash['import_exel']); $i++){
+			$dataDash['import_exel'] = $_FILES['exel_import'];
+	   		if($dataDash['import_exel']['name'] !=''){
+	   			
+	   			$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
+	   			for($i=0; $i<count($dataDash['import_exel']); $i++){
 		
 					$dataDB_adress = array(
 					   'email' => $dataDash['import_exel'][$i][0][0],
@@ -189,8 +204,8 @@ class AdminController extends CI_Controller {
 					   'nom' =>$dataDash['import_exel'][$i][0][2],
 					);
 					$this->db->insert('adresse', $dataDB_adress);
-				}	
-			}
+				}
+	   		}	
 			if(!empty($dataDash['email'])){
 				for($i=0; $i<count($dataDash['prenom']); $i++){
 					$dataDB_adress = array(
@@ -215,8 +230,8 @@ class AdminController extends CI_Controller {
 			
 			$this->db->where('id', $adress[0]->liste_destinataire_id);
 			$this->db->update('liste_destinataire', $dataDB);
-			if(!empty($newList)){
-				redirect('dashboard/list');
+			if(isset($newList)){
+				// redirect('dashboard/list');
 			}
 
 			

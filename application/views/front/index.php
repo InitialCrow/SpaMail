@@ -27,7 +27,7 @@
 					</div>
 					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Panneau de configuration</a>
 		        </header>
-		        <form class="indexForm" method='post' enctype='multipart/form-data' action='' >
+		        <form class="indexForm" method='post' enctype='multipart/form-data' action='<?php echo base_url("dashboard/adress/$token/delete/upload") ?>' >
 			        <section class="dest">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Destinataires</h2><div class="container">
@@ -49,7 +49,7 @@
 									?>
 									
 								</select></div>
-				        	<button type="submit" class="add_receive_button">+</button>
+				        	<a href="#" class="add_receive_button">+</a>
 
 				        </div>	
 			        </section>			  
@@ -101,7 +101,9 @@
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Mail</h2><div class="container">
 				        	<label for="file">Pièces Jointes</label>
+
 							<input type="file" class="file " name=" pieces[]" multiple>
+
 							<?php 
 
 								if(!empty($upload_file['type'][0]) || isset($upload_file)){
@@ -109,11 +111,11 @@
 										
 									foreach ($upload_file as $file_name) {
 										
-										echo "<img width=\"100px\" height=\"100px\"src=".base_url('public/uploads/pieces_jointes').'/'.$file_name->fichier_uri." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->fichier_uri ."</p>";
+										echo "<img width=\"50px\" height=\"50px\"src=".base_url('public/css/attach.png')." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->fichier_uri ."</p>";
+									
 									}
-
+									echo " <button class=\"btn btn-default\" type=\"submit\" data-token=\" $token\" data-type=\"upload\">X</button>";
 								}
-
 							 ?>
 
 							</div>
