@@ -20,7 +20,7 @@ class AdminController extends CI_Controller {
 	 */
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('my_exelextract');
+		$this->load->model('My_exelExtract');
 	}
 
 	public function index()
@@ -229,7 +229,7 @@ class AdminController extends CI_Controller {
 			$dataDash['import_exel'] = $_FILES['exel_import'];
 	   		if($dataDash['import_exel']['name'] !=''){
 	   			
-	   			$dataDash['import_exel'] = $this->my_exelextract->extract($dataDash['import_exel']['tmp_name']);
+	   			$dataDash['import_exel'] = $this->My_exelExtract->extract($dataDash['import_exel']['tmp_name']);
 	   			for($i=0; $i<count($dataDash['import_exel']); $i++){
 		
 					$dataDB_adress = array(
@@ -266,7 +266,7 @@ class AdminController extends CI_Controller {
 			$this->db->where('id', $adress[0]->liste_destinataire_id);
 			$this->db->update('liste_destinataire', $dataDB);
 			if(isset($newList)){
-				// redirect('dashboard/list');
+				redirect('dashboard/list');
 			}	
 		}
 		else

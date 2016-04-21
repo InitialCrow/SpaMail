@@ -1,10 +1,11 @@
 <?php
 include_once './vendor/autoload.php';
 class adresseTableSeeder {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = NULL;
-    private $dbname = 'mailing_kertios';
+    private $servername = DATABASE_HOST;
+    private $username = DATABASE_USERNAME;
+    private $password = DATABASE_PASS;
+    private $dbname = DATABASE_NAME;
+
     private $stmt = NULL;
     private $table = 'adresse';
 

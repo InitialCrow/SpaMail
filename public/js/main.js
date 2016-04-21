@@ -38,12 +38,12 @@ function switchForm(form, button, newUrl){
 	var part = url.split("/");
 	var edit_mode = false;
 	var $token = $('.main-header').attr('data-token');
-
+	
 	var $form = $(form);
 	var $button = $(button);
 	
 
-	if(part[4] === $token ){
+	if(part[6] === $token ){
 		edit_mode = true;
 	}
 	$button.on('click',function(){//when we click on  button we change action url form

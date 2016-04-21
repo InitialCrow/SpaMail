@@ -1,10 +1,10 @@
 <?php
 
 class Migration_utilisateur extends CI_Migration {
-    private $servername = 'localhost';
-    private $username = 'root';
-    private $password = NULL;
-    private $dbname = 'mailing_kertios';
+    private $servername = DATABASE_HOST;
+    private $username = DATABASE_USERNAME;
+    private $password = DATABASE_PASS;
+    private $dbname = DATABASE_NAME;
     private $sql = NULL;
 
     public function up() {

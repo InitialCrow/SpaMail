@@ -1,10 +1,14 @@
-<?php  
-require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
-require './config_mail.php';
+<?php 
+
+require_once './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+require_once './config_mail.php';
 	Class My_senderEmail extends CI_Model{
 
+
 		public function send($exp, $dest, $nom, $sujet, $message, $fichier, $type){
+		
 			$mail = new PHPMailer;
+			
 			
 			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
@@ -16,7 +20,7 @@ require './config_mail.php';
 			$mail->Password = SMTP_PASSWORD; // SMTP password                               // Enable SMTP authentication
 		                         								 	// Enable TLS encryption, `ssl` also accepted
 		                         								 	 // TCP port to connect to
-
+			$mail->CharSet = 'UTF-8';
 			$mail->setFrom($exp);
 			$mail->addAddress($dest);     
 			$mail->addReplyTo($exp);

@@ -21,7 +21,7 @@ class FrontController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('my_multupload');
+		$this->load->model('My_multUpload');
 	}
  
 
@@ -91,7 +91,7 @@ class FrontController extends CI_Controller {
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
 
-			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+			$data['upload_file'] = $this->My_multUpload->do_upload('./public/uploads/pieces_jointes','pieces');
 			
 			if(!empty($data['upload_file'])){
 				foreach ($data['upload_file']['name'] as $file) {
@@ -164,7 +164,7 @@ class FrontController extends CI_Controller {
 			
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
-			$data['upload_file'] = $this->my_multupload->do_upload('./public/uploads/pieces_jointes','pieces');
+			$data['upload_file'] = $this->My_multUpload->do_upload('./public/uploads/pieces_jointes','pieces');
 			$data['logs'] = $this->db->select('*')->from('log_envoi')->where('mail_id',$mail[0]->id)->get();
 			$data['logs'] = $data['logs']->result();
 			$i=0;

@@ -5,7 +5,7 @@ class CheckLogController extends CI_Controller {
  public function __construct()
  {
    parent::__construct();
-   $this->load->model('userauth','',TRUE);
+   $this->load->model('My_userAuth','',TRUE);
  }
  
  public function index()
@@ -35,7 +35,7 @@ class CheckLogController extends CI_Controller {
    $identifiant = $this->input->post('identifiant');
  
    //query the database
-   $result = $this->userauth->login($identifiant, $mdp);
+   $result = $this->My_userAuth->login($identifiant, $mdp);
  
    if($result)
    {

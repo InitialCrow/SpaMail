@@ -88,7 +88,7 @@
 				        		else{
 				        			
 				        			echo " 
-					        			<input type=\"radio\" value=\"html\" name=\"mail_type\" class=\"type\" > type html
+					        			<input type=\"radio\" value=\"html\" name=\"mail_type\" class=\"type\" checked > type html
 										<input type=\"radio\" value=\"text\" name=\"mail_type\" class=\"type\" > type text 
 										";
 				        		}

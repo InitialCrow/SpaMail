@@ -1,6 +1,7 @@
 <?php  
 require_once './vendor/phpoffice/phpexcel/Classes/PHPExcel.php';
 require_once './vendor/phpoffice/phpexcel/Classes/PHPExcel/IOFactory.php';
+
 	Class My_exelExtract extends CI_Model{
 		private $data;
 		public function extract($file){
@@ -18,7 +19,7 @@ require_once './vendor/phpoffice/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$sheet = $objPHPExcel->getSheet(); 
 			$highestRow = $sheet->getHighestRow();
 			$highestColumn = $sheet->getHighestColumn();
-			$data = [];
+			$data = array();
 
 			//  Loop through each row of the worksheet in turn
 			for ($row = 1; $row <= $highestRow; $row++){ 
