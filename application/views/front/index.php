@@ -37,11 +37,18 @@
 					        			if(!empty($dest_list) || isset($dest_list)){
 					        				
 					        				foreach ($dest_list as $dest) {
+					        					
 					        					if($dest->libelle === $dest_mail_base){
+
 					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
+
 					        					}
-					        					echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
-											}
+					        					else{
+					        						echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
+					        					}
+
+					        					
+									}
 					        			}
 					        			else {
 					        				echo "pas de destinataire enregistré";
