@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-USERNAME='daniel'
-PASSWORD='monia'
+USERNAME='root'
+PASSWORD=''
 DBNAME='mailing_kertios'
 HOST='localhost'
-USER_USERNAME='daniel'
-USER_PASSWORD='monia'
+USER_USERNAME='adam'
+USER_PASSWORD='1996'
 MySQL=$(cat <<EOF
 DROP DATABASE IF EXISTS $DBNAME;
 CREATE DATABASE $DBNAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;

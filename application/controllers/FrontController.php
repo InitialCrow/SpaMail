@@ -127,6 +127,7 @@ class FrontController extends CI_Controller {
 			$data['dest_list'] = $dest_list->get()->result();
 
 			$data['dest_mail'] = $this->input->post('dest');
+			$data['dest_mail_base'] = $this->session->userdata('dest_mail');
 			$data['mail_subject'] = $mail[0]->sujet;
 			$data['mail_sender'] = $mail[0]->nom;
 			$data['mail_sender_email'] = $mail[0]->email;

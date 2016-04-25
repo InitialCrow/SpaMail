@@ -70,10 +70,22 @@ body{
 	font-size: 1.8rem;
 }
 
-.login{
-	
+.login .wrapper{
 	max-width: 500px;
 	margin: 0 auto;
+}
+.login .main-header{
+	background-color : #3B5998 ;
+	margin-bottom: 80px;
+}
+.login .title{
+	text-align: center;
+	display: block;
+	line-height: 4;
+	font-size: 3rem;
+	color: white;
+	text-transform: uppercase;
+
 }
 .login label{
 	margin: 20px 0;
@@ -81,9 +93,11 @@ body{
 	text-align: center;
 }
 .login .btn{
-	margin: 20px 0;
+	float: right;
+	margin: 40px 0;
 	display: block;
 	text-align: center;
+	text-transform: uppercase;
 }
 .home{
 	color: #8a8a8a;

@@ -1,5 +1,5 @@
 <?php
-
+require_once './config_mail.php';
 class Migration_adresse extends CI_Migration {
     private $servername = DATABASE_HOST;
     private $username = DATABASE_USERNAME;
@@ -35,8 +35,8 @@ class Migration_adresse extends CI_Migration {
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 email VARCHAR(150) NOT NULL,
                 liste_destinataire_id INT(11) UNSIGNED,
-                nom VARCHAR(150) NOT NULL,
-                prenom VARCHAR(150) NOT NULL,
+                nom VARCHAR(150) ,
+                prenom VARCHAR(150) ,
                 CONSTRAINT adresse_liste_destinataire_id_liste_destinataire_foreign FOREIGN KEY (liste_destinataire_id) REFERENCES liste_destinataire (id) ON delete CASCADE
                
 

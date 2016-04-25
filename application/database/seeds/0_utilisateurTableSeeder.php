@@ -1,5 +1,6 @@
 <?php
 include_once './vendor/autoload.php';
+require_once './config_mail.php';
 class utilisateurTableSeeder {
     private $servername = DATABASE_HOST;
     private $username = DATABASE_USERNAME;

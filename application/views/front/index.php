@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>EnvoiMail 1.0</title>
+        <title>EnvoiMail 1.0.2</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -21,7 +21,7 @@
     <body>
     	<div class="home">
 	    	<div class="wrapper">
-	    		<header class="main-header" data-token ="<?php if(!empty($token)) echo "$token"; ?>"> 
+	    		<header class="main-header" data-token ="<?php if(!empty($token)) echo "$token"; ?>">
 	    			<div class="wrapper">
 			        	<a href="<?php echo base_url('/home') ?>"><h1 id="title">Envoi<span class="blue">Mail@</span></h1></a>
 					</div>
@@ -31,13 +31,13 @@
 			        <section class="dest">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Destinataires</h2><div class="container">
-				        		<label for="dest">listes des destinataires</label>				        		
+				        		<label for="dest">listes des destinataires</label>		        		
 								<select name="dest" class="field">
 									<?php  
 					        			if(!empty($dest_list) || isset($dest_list)){
 					        				
 					        				foreach ($dest_list as $dest) {
-					        					if($dest->libelle === $dest_mail){
+					        					if($dest->libelle === $dest_mail_base){
 					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
 					        					}
 					        					echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
@@ -57,11 +57,11 @@
 				        <div class="wrapper">
 				        	<h2 class="title-form">En tête</h2><div class="container">
 				        	<label for="subject">sujet de l'email</label>
-							<input type="text" class="field" id="subject" name="subject" placeholder="ex: Demande de mission" <?php if(!empty($mail_subject)) echo "value=\" $mail_subject\"" ?>>
+							<input type="text" class="field" id="subject" name="subject" placeholder="ex: Demande de mission" <?php if(!empty($mail_subject)) echo "value=\" $mail_subject\"" ?>required >
 							<label for="expediant">Nom de l'expediteur</label>
-							<input type="text" class="field" id="expediant" name="expediant" placeholder="ex: Mr John Doe" <?php if(!empty($mail_sender)) echo "value=\" $mail_sender\"" ?>>
+							<input type="text" class="field" id="expediant" name="expediant" placeholder="ex: Mr John Doe" <?php if(!empty($mail_sender)) echo "value=\" $mail_sender\"" ?>required>
 							<label for="email-expediant">Email de l'expediteur</label>
-							<input type="text" class="field" id="email-expediant" name="email-expediant" placeholder="ex: johndoe@test.com"<?php if(!empty($mail_sender_email)) echo "value=\" $mail_sender_email\"" ?>></div>
+							<input type="text" class="field" id="email-expediant" name="email-expediant" placeholder="ex: johndoe@test.com"<?php if(!empty($mail_sender_email)) echo "value=\" $mail_sender_email\"" ?>required></div>
 						</div>
 			        </section>
 			        <section class="mail-type">
@@ -119,7 +119,7 @@
 							 ?>
 
 							</div>
-							<textarea name='editor1' class='editor1'><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
+							<textarea name='editor1' class='editor1' required><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
 							<button type="submit" class="validate sav_mail">valider</button>
 						</div>
 			        </section>
@@ -155,8 +155,6 @@
         <![endif]-->
 
         <script src="<?php echo base_url('public/js/jquery-1.11.2.min.js')?>"></script>
-
-     
         <script src="<?php echo base_url('public/js/plugin/ckeditor/ckeditor.js')?>"></script>
         <script src="<?php echo base_url('public/js/main.js')?>"></script>
         <script type="text/javascript">

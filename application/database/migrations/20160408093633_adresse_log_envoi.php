@@ -1,5 +1,5 @@
 <?php
-
+require_once './config_mail.php';
 class Migration_adresse_log_envoi extends CI_Migration {
     private $servername = DATABASE_HOST;
     private $username = DATABASE_USERNAME;

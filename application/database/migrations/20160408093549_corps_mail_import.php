@@ -1,5 +1,5 @@
 <?php
-
+require_once './config_mail.php';
 class Migration_corps_mail_import extends CI_Migration {
     private $servername = DATABASE_HOST;
     private $username = DATABASE_USERNAME;

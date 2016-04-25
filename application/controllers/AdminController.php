@@ -65,9 +65,6 @@ class AdminController extends CI_Controller {
 				$this->db->where('mail_id', $mail[0]->id);
 				$this->db->delete('fichier');
 				redirect('saved_mail/'.$token);
-
-
-		
 			}	
    		}
    		else
@@ -231,14 +228,45 @@ class AdminController extends CI_Controller {
 	   			
 	   			$dataDash['import_exel'] = $this->My_exelExtract->extract($dataDash['import_exel']['tmp_name']);
 	   			for($i=0; $i<count($dataDash['import_exel']); $i++){
-		
-					$dataDB_adress = array(
-					   'email' => $dataDash['import_exel'][$i][0][0],
-					   'liste_destinataire_id' => $list[0]->id,
-					   'prenom' =>$dataDash['import_exel'][$i][0][1],
-					   'nom' =>$dataDash['import_exel'][$i][0][2],
-					);
-					$this->db->insert('adresse', $dataDB_adress);
+					
+					if(isset($dataDash['import_exel'][$i][0][1]) &&  !isset($dataDash['import_exel'][$i][0][2])){
+						$dataDB_adress = array(
+						   'email' => $dataDash['import_exel'][$i][0][0],
+						   'liste_destinataire_id' => $list[0]->id,
+						   'nom' =>$dataDash['import_exel'][$i][0][1],
+						 
+						);
+						$this->db->insert('adresse', $dataDB_adress);
+					}
+					else if(isset($dataDash['import_exel'][$i][0][2]) && !isset($dataDash['import_exel'][$i][0][1])){
+						$dataDB_adress = array(
+						   'email' => $dataDash['import_exel'][$i][0][0],
+						   'liste_destinataire_id' => $list[0]->id,
+						   'prenom' =>$dataDash['import_exel'][$i][0][2],
+						 
+						);
+						$this->db->insert('adresse', $dataDB_adress);
+					}
+
+					if(isset($dataDash['import_exel'][$i][0][1]) && isset($dataDash['import_exel'][$i][0][2]) ){
+						
+						$dataDB_adress = array(
+						   'email' => $dataDash['import_exel'][$i][0][0],
+						   'liste_destinataire_id' => $list[0]->id,
+						   'prenom' =>$dataDash['import_exel'][$i][0][1],
+						   'nom' =>$dataDash['import_exel'][$i][0][2],
+						);
+						$this->db->insert('adresse', $dataDB_adress);
+					}
+					else if(!isset($dataDash['import_exel'][$i][0][1]) && !isset($dataDash['import_exel'][$i][0][2])){
+						$dataDB_adress = array(
+						   'email' => $dataDash['import_exel'][$i][0][0],
+						   'liste_destinataire_id' => $list[0]->id,
+						
+						);
+						$this->db->insert('adresse', $dataDB_adress);
+					}
+					
 				}
 	   		}	
 			if(!empty($dataDash['email'])){

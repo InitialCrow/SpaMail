@@ -14,7 +14,7 @@ class CheckLogController extends CI_Controller {
    $this->load->library('form_validation');
   
    $this->form_validation->set_rules('identifiant', 'identifiant', 'trim|required');
-   $this->form_validation->set_rules('mdp', 'mdp', 'trim|required|callback_check_database');
+   $this->form_validation->set_rules('mdp', 'mot de passe', 'trim|required|callback_check_database');
   
    if($this->form_validation->run() == FALSE)
    {
@@ -54,7 +54,7 @@ class CheckLogController extends CI_Controller {
    }
    else
    {
-     $this->form_validation->set_message('check_database', 'Invalid identifiant or mdp');
+     $this->form_validation->set_message('check_database', ' identifiant ou mot de passe invalide');
      return false;
    }
  }

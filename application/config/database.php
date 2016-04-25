@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> ' ',
 	'hostname' => 'mysql:host=localhost;dbname=mailing_kertios',
-	'username' => 'daniel',
-	'password' => 'monia',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'mailing_kertios',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

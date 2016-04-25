@@ -16,6 +16,7 @@ $(document).ready(function(){
 	addListPannel('.add_list_button');
 	addListPannel('.add_adress_button',true);
 	sendMessage();
+	checkform(['.indexForm','.adminForm'])
 	
 	
 });
@@ -43,7 +44,7 @@ function switchForm(form, button, newUrl){
 	var $button = $(button);
 	
 
-	if(part[6] === $token ){
+	if(part[part.length-1] === $token ){
 		edit_mode = true;
 	}
 	$button.on('click',function(){//when we click on  button we change action url form
@@ -55,10 +56,7 @@ function switchForm(form, button, newUrl){
 			$form.attr('action', window.location.href + '/edit');
 		}
 	});
-
 }
-
-
 function checkDelete(idButton){
 	var $button = $(idButton);
 	var confirmMsg = '<p>êtes vous sure de vouloir supprimer cette élément</p>';
@@ -162,9 +160,9 @@ function addListPannel(button, submit_mode){
 			evt.preventDefault();
 			
 
-			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\" form-control prenom\"placeholder=\"jhon\"></input>"
+			var prenomInput =  "<input  name=\"prenom["+i+"]\" type=\"text\" class=\" form-control prenom\"placeholder=\"jhon\"></input>"
 			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\" form-control nom\"placeholder=\"Do\"></input>"
-			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\" form-control email\"placeholder=\"jhondo@hotmail.fr\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\" form-control email\"placeholder=\"jhondo@hotmail.fr\"required></input>"
 			var optionInput =  "<button type=\"submit\" class=\"add-new-adress btn btn-default\">ajouter à la liste</burron>"
 			$emailContainer.append(emailInput);
 			$nomContainer.append(nomInput);
@@ -174,6 +172,11 @@ function addListPannel(button, submit_mode){
 			$('.add-new-adress').on('click',function(evt){
 
 				evt.preventDefault();
+				if($('.email').val() == '' || !isValidEmailAddress($('.email').val())){
+
+					alert('veuillez rentrez une email valide');
+					return;
+				}
 
 			
 				$.ajax({
@@ -199,18 +202,32 @@ function addListPannel(button, submit_mode){
 			i++;
 			var prenomInput =  "<input name=\"prenom["+i+"]\" type=\"text\" class=\"form-control prenom\"placeholder=\"jhon\"></input>"
 			var nomInput =  "<input name=\"nom["+i+"]\" type=\"text\" class=\"form-control nom\"placeholder=\"Do\"></input>"
-			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"placeholder=\"jhondo@hotmail.com\"></input>"
+			var emailInput =  "<input name=\"email["+i+"]\" type=\"email\" class=\"form-control email\"placeholder=\"jhondo@hotmail.com\"required></input>"
 			
 			
 			 $prenomContainer.append(prenomInput);
 			 $nomContainer.append(nomInput);
 			 $emailContainer.append(emailInput);
 		})
-	}
-	
+	}	
 }
 
+function checkform(form){
+	console.log('checkform :: ok');
+	var elems = [];
+	for(var i =0; i<form.length;i++){
+		elems[i] = $(form[i]);
+		
+	}
 
+
+}
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+    // alert( pattern.test(emailAddress) );
+    return pattern.test(emailAddress);
+};
 
 
 
