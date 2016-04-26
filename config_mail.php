@@ -1,7 +1,7 @@
 <?php 
 
 // smtp host
-define("SMTP_HOST","courrier.kertios.com");
+define("SMTP_HOST","");
 
 //smtp Port
 define("SMTP_PORT", 587);
@@ -11,8 +11,8 @@ define("SMTP_AUTH",true);
 
 
 // smtp auth_logs
-define("SMTP_USERNAME","adam.parent@kertios.com");
-define("SMTP_PASSWORD","2df030");
+define("SMTP_USERNAME","");
+define("SMTP_PASSWORD","");
 
 // seed / migrate dataBase
 define('DATABASE_HOST','localhost');

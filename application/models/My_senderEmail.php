@@ -12,7 +12,8 @@ require_once './config_mail.php';
 			
 			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
-			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->isSMTP();  
+                       // Set mailer to use SMTP
 			$mail->Host = SMTP_HOST;  								// Specify main and backup SMTP servers
 			$mail->SMTPAuth = SMTP_AUTH;
 			$mail->Port = SMTP_PORT;
@@ -48,10 +49,10 @@ require_once './config_mail.php';
 			}
 
 			if(!$mail->send()) {
-			    echo 'Message could not be sent.';
+			    
 			    echo 'Mailer Error: ' . $mail->ErrorInfo;
 			} else {
-			    echo 'Message has been sent';
+			    
 			}
 		}
 	}

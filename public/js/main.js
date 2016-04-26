@@ -16,7 +16,8 @@ $(document).ready(function(){
 	addListPannel('.add_list_button');
 	addListPannel('.add_adress_button',true);
 	sendMessage();
-	checkform(['.indexForm','.adminForm'])
+	canSend();
+
 	
 	
 });
@@ -106,7 +107,7 @@ function checkDelete(idButton){
 					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
-						document.location.reload();
+						window.location.href = window.location.href;
 					},
 					error : function(msg) {
 						console.log(msg);
@@ -185,7 +186,7 @@ function addListPannel(button, submit_mode){
 					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
-						document.location.reload();
+						window.location.href = window.location.href;
 					},
 					error : function(msg) {
 						console.log(msg);
@@ -212,15 +213,15 @@ function addListPannel(button, submit_mode){
 	}	
 }
 
-function checkform(form){
-	console.log('checkform :: ok');
-	var elems = [];
-	for(var i =0; i<form.length;i++){
-		elems[i] = $(form[i]);
-		
+function canSend(){
+	var $btn = $('.send-button');
+	var url = window.location.href;
+	var part = url.split("/");
+	
+	if( part[part.length-1]=== 'home'){
+		$btn.attr('disabled','disabled');
+		$btn.css('background-color','lightgrey');
 	}
-
-
 }
 
 function isValidEmailAddress(emailAddress) {

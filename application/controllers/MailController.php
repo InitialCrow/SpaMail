@@ -30,6 +30,8 @@ class MailController extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 
 			$data['list_select'] = $this->input->post('dest');
+			$data['dest_mail_base'] = $this->session->userdata('dest_mail');
+
 	   		$mail = $this -> db -> select('*')->from('mail')->where('token',$token)->get();
 	   		$mail = $mail->result();
 

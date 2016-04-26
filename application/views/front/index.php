@@ -37,15 +37,20 @@
 					        			if(!empty($dest_list) || isset($dest_list)){
 					        				
 					        				foreach ($dest_list as $dest) {
-					        					
-					        					if($dest->libelle === $dest_mail_base){
+					        					if(!empty( $dest_mail_base) || isset($dest_mail__base)){
+					        						if($dest->libelle === $dest_mail_base){
 
-					        						echo "<option value=\"$dest->adresse_id\" selected = 'selected' >$dest->libelle </option>";
+					        						echo "<option  value=\"$dest->libelle\" selected = 'selected' >$dest->libelle </option>";
 
+						        					}
+						        					else{
+						        						echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
+						        					}
 					        					}
 					        					else{
 					        						echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
 					        					}
+					        					
 
 					        					
 									}
@@ -134,7 +139,21 @@
 			        <section class="send">
 			        	<div class="wrapper">
 				        	<h2 class="title-form">Envoi</h2><div class="container">
-				        	<p>liste dest<span class="under">(nb enregistremnt)</span> </p>
+				        	<p>Etat du mail <span class="under">
+				        				<?php  if(!empty($mail_status) || isset($mail_status)){
+					        					if($mail_status == "0"){
+					        						echo "Attention ce mail n'a pas encore été testé";
+					        					}
+					        					if($mail_status == "1"){
+					        						echo "Ce mail à été testé";
+					        					}
+				        					} 
+				        					else{
+				        						echo"Valider votre mail avant de l'envoyé";
+				        					}
+				        				?>
+				        			</span> 
+				        	</p>
 				        	<button type="submit" class="send-button">Envoyer</button></div>
 				        </div>
 			        </section>
