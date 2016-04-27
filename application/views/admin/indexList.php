@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>EnvoiMail 1.0.2</title>
+    <title>EnvoiMail 1.0.3</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('vendor/twbs/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -67,10 +67,10 @@
                               <div class=\"col-xs-3 center-block title\">prenom</div> 
                               <div class=\"col-xs-3 center-block title\">options</div>      
                             </div>";
-
+                            $i = 0;
                       foreach ($adress as $ad) {
-                         
-                            echo "<a href=\"edit_list/$ad->id\"><div class=\"row\">
+                         $i++;
+                            echo "<a href=\"edit_list/$ad->id\" class='hide-adress'><div class=\"row row".$i."\">
                                     <div class=\"col-xs-3 center-block rowData\">$ad->email</div>
                                     <div class=\"col-xs-3 center-block rowData \">$ad->nom</div>
                                     <div class=\"col-xs-3 center-block rowData \">$ad->prenom</div>

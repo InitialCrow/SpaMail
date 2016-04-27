@@ -35,6 +35,7 @@ class Migration_ficher extends CI_Migration {
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 mail_id INT(11) UNSIGNED,
                 fichier_uri VARCHAR(150) NOT NULL,
+                original_name VARCHAR(150),
                 CONSTRAINT fichier_mail_id_mail_foreign FOREIGN KEY (mail_id) REFERENCES mail (id) ON delete CASCADE
 
                

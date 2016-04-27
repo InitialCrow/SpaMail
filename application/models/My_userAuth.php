@@ -3,10 +3,11 @@
 	{
 	 function login($identifiant, $mdp)
 	 {
-	   $this -> db -> select('id, identifiant, mdp');
+	   $this -> db -> select('id, identifiant, mdp, signature');
 	   $this -> db -> from('utilisateur');
 	   $this -> db -> where('identifiant', $identifiant);
 	   $this -> db -> where('mdp', $mdp);
+
 	   $this -> db -> limit(1);
 	 
 	   $query = $this -> db -> get();

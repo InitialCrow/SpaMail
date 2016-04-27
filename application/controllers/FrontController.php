@@ -32,9 +32,10 @@ class FrontController extends CI_Controller {
 	   {
 
 			$session_data = $this->session->userdata('logged_in');
+
 			$data['identifiant'] = $session_data['identifiant'];
 			
-			
+			$data['signature'] = $session_data['signature'];
 			$dest_list = $this -> db -> select('*')->from('liste_destinataire');
 			$data['dest_list'] = $dest_list->get()->result();
 
@@ -92,14 +93,15 @@ class FrontController extends CI_Controller {
 			$mail = $mail->result();
 
 			$data['upload_file'] = $this->My_multUpload->do_upload('./public/uploads/pieces_jointes','pieces');
-			
-			if(!empty($data['upload_file'])){
-				foreach ($data['upload_file']['name'] as $file) {
-					
+			$i=0;
+			if(!empty($data['upload_file']['uploaded'])){
+				foreach ($data['upload_file']['uploaded']['name'] as $file) {
 					$dataDB = array(
 				   		'fichier_uri' => $file,
 				   		'mail_id' => $mail[0]->id,
+				   		'original_name'=>$data['upload_file']['original_name'][$i]
 					);
+					$i++;
 					$this->db->insert('fichier', $dataDB); 
 					
 				}
@@ -166,18 +168,21 @@ class FrontController extends CI_Controller {
 			$mail = $this->db->select('*')->from('mail')->where('token',$token)->get();
 			$mail = $mail->result();
 			$data['upload_file'] = $this->My_multUpload->do_upload('./public/uploads/pieces_jointes','pieces');
+
 			$data['logs'] = $this->db->select('*')->from('log_envoi')->where('mail_id',$mail[0]->id)->get();
 			$data['logs'] = $data['logs']->result();
 			$i=0;
-			if(!empty($data['upload_file'])){
-				foreach ($data['upload_file']['name'] as $file) {
+			if(!empty($data['upload_file']['uploaded'])){
+				foreach ($data['upload_file']['uploaded']['name'] as $file) {
 					
+				
 					
 					$dataDB = array(
 				   		'fichier_uri' => $file,
 				   		'mail_id' => $mail[0]->id,
+				   		'original_name'=>$data['upload_file']['original_name'][$i]
 					);
-					
+					$i++;
 					$this->db->insert('fichier', $dataDB); 
 
 					

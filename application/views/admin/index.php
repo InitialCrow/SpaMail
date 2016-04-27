@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>EnvoiMail 1.0.2</title>
+    <title>EnvoiMail 1.0.3</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('vendor/twbs/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -37,7 +37,9 @@
         				
               </div>
             <?php
+
                 foreach ($mail as $m) {
+
                     if ( $m->status == 1 ){
                       $m->status = "testé";
 
@@ -45,7 +47,7 @@
                     elseif($m->status == 0){
                       $m->status = "pas testé";
                     }
-                  echo " <a href=\"saved_mail/$m->token\"><div class=\"row\">
+                  echo " <a href=\"saved_mail/$m->token\"><div class=\"row row\" >
                           <div class=\"col-xs-1 center-block rowData\">$m->type</div>
                           <div class=\"col-xs-2 center-block rowData\">$m->sujet</div>
                           <div class=\"col-xs-2 center-block rowData\">$m->date_envoi</div>

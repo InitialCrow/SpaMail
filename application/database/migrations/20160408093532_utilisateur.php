@@ -34,7 +34,8 @@ class Migration_utilisateur extends CI_Migration {
             $this->sql = 'CREATE TABLE utilisateur (
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 identifiant VARCHAR( 150 ) NOT NULL,
-                mdp VARCHAR(150) NOT NULL
+                mdp VARCHAR(150) NOT NULL,
+                signature VARCHAR(50)
                
 
             )';

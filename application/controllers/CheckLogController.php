@@ -44,7 +44,8 @@ class CheckLogController extends CI_Controller {
      {
        $sess_array = array(
          'id' => $row->id,
-         'identifiant' => $row->identifiant
+         'identifiant' => $row->identifiant,
+         'signature'=>$row->signature
        );
 
        $this->session->set_userdata('logged_in', $sess_array);

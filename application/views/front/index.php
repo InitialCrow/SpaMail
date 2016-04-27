@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>EnvoiMail 1.0.2</title>
+        <title>EnvoiMail 1.0.3</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -123,7 +123,7 @@
 										
 									foreach ($upload_file as $file_name) {
 										
-										echo "<img width=\"50px\" height=\"50px\"src=".base_url('public/css/attach.png')." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->fichier_uri ."</p>";
+										echo "<div class=\"atach\"><img width=\"25px\" height=\"25px\"src=".base_url('public/css/attach.png')." alt=\"image en apreçu des pièces jointes\"><p>".$file_name->original_name ."</p></div>";
 									
 									}
 									echo " <button class=\"btn btn-default\" type=\"submit\" data-token=\" $token\" data-type=\"upload\">X</button>";
@@ -131,7 +131,12 @@
 							 ?>
 
 							</div>
-							<textarea name='editor1' class='editor1' required><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; ?></textarea>
+							<textarea name='editor1' class='editor1' required><?php if(!empty($mail_text)||isset($mail_text)) echo $mail_text; 
+								if(!empty($signature)){
+									echo"<br><img src=".base_url()."public/uploads/pieces_jointes/".$signature." alt='signature du membre connecter'>";
+								}
+
+							?></textarea>
 							<button type="submit" class="validate sav_mail">valider</button>
 						</div>
 			        </section>

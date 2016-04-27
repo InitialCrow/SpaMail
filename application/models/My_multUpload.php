@@ -13,7 +13,7 @@
 					for($i=0; $i<$total; $i++) {
 						$ext = pathinfo($_FILES[$inputName]['name'][$i] , PATHINFO_EXTENSION);
 						$newName = $this->randomString().".$ext";
-						
+						$orig_name[$i] = $_FILES[$inputName]['name'][$i];
 						$_FILES[$inputName]['name'][$i]= $newName;
 					
 			
@@ -33,7 +33,8 @@
 							}
 						}	
 					}
-					$file = $_FILES[$inputName];
+					$file['uploaded'] = $_FILES[$inputName];
+					$file['original_name']=$orig_name;					
 					return $file;
 				}
 				else{

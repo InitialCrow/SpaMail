@@ -10,7 +10,7 @@
 		<div class="login">
 			<header class="main-header" >
 	    			<div class="wrapper">
-			        		<h1 class="title">EnvoiMail 1.0.2</span></h1>
+			        		<h1 class="title">EnvoiMail 1.0.3</span></h1>
 				</div>
 		        </header>
 			<?php echo validation_errors(); ?>

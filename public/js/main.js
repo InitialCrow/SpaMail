@@ -17,6 +17,7 @@ $(document).ready(function(){
 	addListPannel('.add_adress_button',true);
 	sendMessage();
 	canSend();
+	hideAdress();
 
 	
 	
@@ -60,7 +61,7 @@ function switchForm(form, button, newUrl){
 }
 function checkDelete(idButton){
 	var $button = $(idButton);
-	var confirmMsg = '<p>êtes vous sure de vouloir supprimer cette élément</p>';
+	var confirmMsg = '<p>êtes vous sur de vouloir supprimer cet élément</p>';
 	var choice = '<button class="btn btn-default" id="deleteYes" type="submit">oui</button><button class="btn btn-default" id="deleteNo" >non</button>';
 	var $msg = '<div id="confirmMsg">'+confirmMsg+choice+'</div>';
 	var $id =null;
@@ -92,10 +93,13 @@ function checkDelete(idButton){
 				evt.preventDefault();
 				if( $id_html[$id_html.length-1] ==='delete'){
 					$url = 'dashboard/adress/'+$id+'/delete/'+$type;
+					
 					// $('.adminForm').attr('action','dashboard/'+$id+'/delete/'+$type);
 				}
 				if( $id_html[$id_html.length-1] === 'deleteAd'){
+
 					$url = $id+'/delete/'+$type;
+					
 					
 
 					// $('.adminForm').attr('action', $id+'/delete/'+$type);
@@ -107,7 +111,16 @@ function checkDelete(idButton){
 					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
-						window.location.href = window.location.href;
+						if($type ==='mail'){
+							window.location = window.location.href;
+						}
+						if($type === 'list'){
+							window.location = window.location.href;
+						}
+						if($type === 'adress'){
+							$yes.parent().parent().parent().remove();
+						}
+						
 					},
 					error : function(msg) {
 						console.log(msg);
@@ -120,6 +133,41 @@ function checkDelete(idButton){
 			alert('script error');
 		}
 	})
+}
+function hideAdress(){
+	var $count_row = $('.row');
+	var slicy = 20;
+	if($count_row.length>20){
+
+		for (var i =0; i<$count_row.length; i++){
+			$row_visible +=$count_row[i];
+			if(i>20){
+
+				$count_row[i].style='display : none';
+			}
+		}
+
+	}
+	$(window).scroll(function() {
+		
+		
+		var $count_row = $('.row')
+
+		
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			
+			var $count_row = $count_row.slice(slicy);
+			for(var i = 0; i<$count_row.length;i++){
+				if(i<20){
+					$count_row[i].style="display:block";
+					
+					
+				}
+			}
+			slicy +=20;
+		}
+	});
+
 }
 function editAdress(){
 
@@ -186,7 +234,11 @@ function addListPannel(button, submit_mode){
 					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
-						window.location.href = window.location.href;
+						$('.email').val("");
+						$('.nom').val("");
+						$('.prenom').val("");
+						alert('email ajouté');
+
 					},
 					error : function(msg) {
 						console.log(msg);
