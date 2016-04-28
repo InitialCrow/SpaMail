@@ -25,7 +25,7 @@
 	    			<div class="wrapper">
 			        	<a href="<?php echo base_url('/home') ?>"><h1 id="title">Envoi<span class="blue">Mail@</span></h1></a>
 					</div>
-					<a style="line-height: 4" href="<?php echo base_url('dashboard') ?>">Panneau de configuration</a>
+					<a class="admin-board" href="<?php echo base_url('dashboard') ?>">Panneau de configuration</a>
 		        </header>
 		        <form class="indexForm" method='post' enctype='multipart/form-data' action='<?php echo base_url("dashboard/adress/$token/delete/upload") ?>' >
 			        <section class="dest">
@@ -114,7 +114,7 @@
 				        	<h2 class="title-form">Mail</h2><div class="container">
 				        	<label for="file">Pièces Jointes</label>
 
-							<input type="file" class="file " name=" pieces[]" multiple>
+							<input type="file" class="file" name=" pieces[]" multiple>
 
 							<?php 
 

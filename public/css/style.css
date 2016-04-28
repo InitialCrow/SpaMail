@@ -107,7 +107,26 @@ body{
 	max-width: 1200px;
 	margin: 0 auto;
 }
+.home .admin-board{
+
+	transition:  all, 0.5s;
+	display: block;
+	width: 250px;
+	margin : 20px 0;
+	background-color : #3ca834;
+	border: 2px solid #c2c2c2;
+	color : white;
+	line-height: 2.5;
+	text-align : center;
+	font-size: 1.8rem;
+	 
+}
+.home .admin-board:hover{
+	transition:  all, 0.5s;
+	background-color: lightblue;
+}
 .home .container{
+
 	width: 50%;
 	display: inline-block;
 
@@ -278,46 +297,16 @@ body{
 
 }
 .home .mail .file {
-
-	background-color: none;
+	margin-top: 35px;
+	
 	display: block;
 
 	
 }
-
-
-.home .mail .file:last-of-type{
-	margin-top: 30px;
-	width: 125px;
-
-	
-	
-}
 .home .mail  label{
 	padding-top: 40px;
-	
-	
-}
-
-.home .mail .file::-webkit-file-upload-button {
-  visibility: hidden;
 
 }
-.home .mail .file::before {
-  content: 'PARCOURIR';
-
-  background-color : #3ca834;
-  border: 2px solid #c2c2c2;
-  color : white;
-  line-height: 2;
-  font-size: 1.8rem;
-  padding: 5px 8px;
-
-
-
-
-}
-
 
 .home .mail label{
 	display: block;
@@ -326,6 +315,7 @@ body{
 }
 
 .home .mail .validate{
+	transition : all, 0.5s;
 	border: 2px solid #c2c2c2;
 	margin: 20px auto;
 	display: block;
@@ -337,6 +327,11 @@ body{
 	min-width: 100px;
 	text-transform: uppercase;
 }
+.home .mail .validate:hover{
+	transition : all, 0.5s;
+	background-color: green;
+	cursor: pointer;
+}
 .home .atach{
 	
 	width: 50%;
@@ -344,14 +339,10 @@ body{
 	
 }
 .home .atach img{
-
 	display: block;
 	text-align: center;
 	margin-bottom: 5px;
 }
-
-
-
 
 /*----------------------------------send--------------*/
 
@@ -367,6 +358,7 @@ body{
 	line-height: 1.5;
 }
 .home .send button{
+	transition : all, 0.5s;
 	border: 2px solid #c2c2c2;
 	text-transform: uppercase;
 	margin: 0 auto;
@@ -378,6 +370,11 @@ body{
 	line-height: 1.5;
 	min-width: 100px;
 	
+}
+.home .send button:hover{
+	transition : all, 0.5s;
+	background-color: green;
+	cursor: pointer;
 }
 /*------------------------------send renderer-------------*/
 .home .send-renderer{
