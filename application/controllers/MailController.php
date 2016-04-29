@@ -65,7 +65,7 @@ class MailController extends CI_Controller {
 	   			$this->my_senderEmail->send($mail[0]->email, $value->email, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier, $mail[0]->type);
 	   		}
 	   		
-	   		
+	   		$this->session->set_userdata('mail_sended',true);
 	   		redirect('saved_mail/'.$token);
 	    }
 	   else

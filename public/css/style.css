@@ -102,6 +102,23 @@ body{
 .home{
 	color: #8a8a8a;
 }
+.home .alert{
+	display: block;
+	width: 100%;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bcdff1;
+	line-height: 1.5;
+	padding: 35px;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+
+}
+.home .alert a{
+	text-decoration: underline;
+
+}
 .home .wrapper{
 	
 	max-width: 1200px;
@@ -335,13 +352,13 @@ body{
 .home .atach{
 	
 	width: 50%;
-	margin-top : 25px;
-	
+	margin : 30px 0;	
 }
 .home .atach img{
-	display: block;
+	float: left;
+	margin-right: 5px;
 	text-align: center;
-	margin-bottom: 5px;
+	
 }
 
 /*----------------------------------send--------------*/

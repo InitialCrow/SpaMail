@@ -15,7 +15,6 @@
                 padding-bottom: 20px;
             }
         </style>
-     
         <link rel="stylesheet" href="<?php echo base_url('public/css/style.css') ?>">
     </head>
     <body>
@@ -26,6 +25,17 @@
 			        	<a href="<?php echo base_url('/home') ?>"><h1 id="title">Envoi<span class="blue">Mail@</span></h1></a>
 					</div>
 					<a class="admin-board" href="<?php echo base_url('dashboard') ?>">Panneau de configuration</a>
+				<?php 
+				
+				if(isset($_SESSION['mail_sended']) && $_SESSION['mail_sended'] === true ){
+					echo "<div class=\"alert \" role=\"alert\">
+						  <p>Les messages ont bien été envoyés ! <a href=\".send-renderer\" class=\"alert-link js-scrollTo\">Cliquez ici pour voir le nombre de messages envoyés</a></p>
+						</div>";
+					unset($_SESSION['mail_sended']);
+				}
+					
+				 ?>
+				
 		        </header>
 		        <form class="indexForm" method='post' enctype='multipart/form-data' action='<?php echo base_url("dashboard/adress/$token/delete/upload") ?>' >
 			        <section class="dest">
