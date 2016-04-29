@@ -30,7 +30,7 @@ require_once './config_mail.php';
 			if(!empty($fichier)){
 				foreach ($fichier as $fich) {
 					
-					$mail->addAttachment("./public/uploads/pieces_jointes/".$fich->fichier_uri);  
+					$mail->addAttachment("./public/uploads/pieces_jointes/".$fich->fichier_uri, $fich->original_name);  
 				}
 			}
 
@@ -38,7 +38,8 @@ require_once './config_mail.php';
 
 			$mail->Subject = $sujet;
 			$mail->Body    = $message;
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			$mail->AltBody =  strip_tags($message);
+			
 			if($type === "html"){
 				
 				$mail->isHTML(true);  
@@ -46,6 +47,7 @@ require_once './config_mail.php';
 			if($type === "text"){
 				$mail->ContentType = 'text/plain'; 
     			$mail->isHTML(false);
+
 			}
 
 			if(!$mail->send()) {
