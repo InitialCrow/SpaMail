@@ -282,6 +282,10 @@ function canSend(){
 		$btn.attr('disabled','disabled');
 		$btn.css('background-color','lightgrey');
 	}
+	
+	
+
+	
 }
 
 function isValidEmailAddress(emailAddress) {

@@ -61,8 +61,10 @@ class MailController extends CI_Controller {
 	   				'envoi'=> $i
 	   			);
 	   			$this->db->insert('log_envoi', $dataDB);
+	   			if($value->abonnee == 1){
+	   				$this->my_senderEmail->send($mail[0]->email, $value->email,$value->id, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier, $mail[0]->type);
+	   			}
 	   			
-	   			$this->my_senderEmail->send($mail[0]->email, $value->email, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier, $mail[0]->type);
 	   		}
 	   		
 	   		$this->session->set_userdata('mail_sended',true);
@@ -74,5 +76,18 @@ class MailController extends CI_Controller {
 			redirect('/', 'refresh');
 	   }
 	}
+	public function disableAbo($id){
+		$this->load->library('form_validation');
+		$this->load->view('front/disable');
+		$adress = $this -> db -> select('*')->from('adresse')->where('id', $id)->get();
+	   	$adress = $adress->result();
+	   	$dataDB = array(
+	   		'abonnee'=>0
+	   	);
+
+	   	$this->db->where('id',$adress[0]->id);
+	   	$this->db->update('adresse',$dataDB);
+	}
 
 }
+

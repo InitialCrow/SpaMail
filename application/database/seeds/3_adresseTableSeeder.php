@@ -33,12 +33,14 @@ class adresseTableSeeder {
                 }
                 $nom = $faker->name;
                 $prenom = $faker->name;
-                $this->stmt =  $conn->prepare("INSERT INTO $this->table (email, liste_destinataire_id, nom, prenom) VALUES (:email, :liste_destinataire_id, :nom, :prenom)");
+                $abo = 1;
+                $this->stmt =  $conn->prepare("INSERT INTO $this->table (email, liste_destinataire_id, nom, prenom, abonnee) VALUES (:email, :liste_destinataire_id, :nom, :prenom, :abonnee)");
                
                 $this->stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $this->stmt->bindParam(':liste_destinataire_id', $liste_destinataire_id, PDO::PARAM_INT);
                 $this->stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
                 $this->stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+                $this->stmt->bindParam(':abonnee', $abo, PDO::PARAM_INT);
 
                 if($this->stmt->execute()) {
                   echo "1 row has been inserted \n ";  

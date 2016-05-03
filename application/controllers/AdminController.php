@@ -161,7 +161,8 @@ class AdminController extends CI_Controller {
 			   
 			   'email'=> $dataDash['email'],
 			   'nom' => $dataDash['name'],
-			   'prenom' => $dataDash['firstname']
+			   'prenom' => $dataDash['firstname'],
+			   'abonnee'=>1
 
 
 			);
@@ -234,6 +235,7 @@ class AdminController extends CI_Controller {
 						   'email' => $dataDash['import_exel'][$i][0][0],
 						   'liste_destinataire_id' => $list[0]->id,
 						   'nom' =>$dataDash['import_exel'][$i][0][1],
+						   'abonnee'=>1
 						 
 						);
 						$this->db->insert('adresse', $dataDB_adress);
@@ -255,6 +257,7 @@ class AdminController extends CI_Controller {
 						   'liste_destinataire_id' => $list[0]->id,
 						   'prenom' =>$dataDash['import_exel'][$i][0][1],
 						   'nom' =>$dataDash['import_exel'][$i][0][2],
+						   'abonnee'=>1
 						);
 						$this->db->insert('adresse', $dataDB_adress);
 					}
@@ -262,6 +265,7 @@ class AdminController extends CI_Controller {
 						$dataDB_adress = array(
 						   'email' => $dataDash['import_exel'][$i][0][0],
 						   'liste_destinataire_id' => $list[0]->id,
+						   'abonnee'=>1
 						
 						);
 						$this->db->insert('adresse', $dataDB_adress);
@@ -276,6 +280,7 @@ class AdminController extends CI_Controller {
 					   'liste_destinataire_id' => $list[0]->id,
 					   'prenom' =>$dataDash['prenom'][$i],
 					   'nom' =>$dataDash['nom'][$i],
+					    'abonnee'=>1
 					);
 					$this->db->insert('adresse', $dataDB_adress);
 				}
@@ -287,7 +292,8 @@ class AdminController extends CI_Controller {
 			
 			
 			$dataDB = array(
-					'adresse_id'=>$adress[0]->id
+					'adresse_id'=>$adress[0]->id,
+					
 
 				);
 			

@@ -37,6 +37,7 @@ class Migration_adresse extends CI_Migration {
                 liste_destinataire_id INT(11) UNSIGNED,
                 nom VARCHAR(150) ,
                 prenom VARCHAR(150) ,
+                abonnee INT(11) UNSIGNED,
                 CONSTRAINT adresse_liste_destinataire_id_liste_destinataire_foreign FOREIGN KEY (liste_destinataire_id) REFERENCES liste_destinataire (id) ON delete CASCADE
                
 

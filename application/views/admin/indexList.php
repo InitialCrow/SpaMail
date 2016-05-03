@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>EnvoiMail 1.0.3</title>
+    <title>EnvoiMail 1.0.4</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('vendor/twbs/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -64,17 +64,25 @@
                             <div class=\"row\">
                               <div class=\"col-xs-3 center-block title\">email</div>
                               <div class=\"col-xs-3 center-block title\">nom</div>
-                              <div class=\"col-xs-3 center-block title\">prenom</div> 
-                              <div class=\"col-xs-3 center-block title\">options</div>      
+                              <div class=\"col-xs-2 center-block title\">prenom</div>
+                              <div class=\"col-xs-2 center-block title\">abonnée</div> 
+                              <div class=\"col-xs-2 center-block title\">options</div>      
                             </div>";
                             $i = 0;
                       foreach ($adress as $ad) {
                          $i++;
+                            if($ad->abonnee == 1){
+                              $ad->abonnee = 'oui';
+                            }
+                            else{
+                              $ad->abonnee = 'non';
+                            }
                             echo "<a href=\"edit_list/$ad->id\" class='hide-adress'><div class=\"row row".$i."\">
                                     <div class=\"col-xs-3 center-block rowData\">$ad->email</div>
                                     <div class=\"col-xs-3 center-block rowData \">$ad->nom</div>
-                                    <div class=\"col-xs-3 center-block rowData \">$ad->prenom</div>
-                                    <div class=\"col-xs-3 center-block rowData \"><button class=\"btn btn-default deleteAd\" data-token=\"$ad->id\" data-type=\"adress\">supprimer</button></div>        
+                                    <div class=\"col-xs-2 center-block rowData \">$ad->prenom</div>
+                                    <div class=\"col-xs-2 center-block rowData \">$ad->abonnee</div>
+                                    <div class=\"col-xs-2 center-block rowData \"><button class=\"btn btn-default deleteAd\" data-token=\"$ad->id\" data-type=\"adress\">supprimer</button></div>        
                                 </div></a>";
                       }
                   }
@@ -92,12 +100,16 @@
                             
 
                           </div>
-                          <div class="col-xs-3 center-block prenom_input rowData ">
+                          <div class="col-xs-2 center-block prenom_input rowData ">
+                            
+                            
+                          </div>
+                          <div class="col-xs-2 center-block abonnee_input rowData ">
                             
                             
                           </div>
                           
-                          <div class="col-xs-3 center-block option_input rowData">
+                          <div class="col-xs-2 center-block option_input rowData">
                            
                             
                           </div>

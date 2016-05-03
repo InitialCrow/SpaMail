@@ -5,7 +5,7 @@ require_once './config_mail.php';
 	Class My_senderEmail extends CI_Model{
 
 
-		public function send($exp, $dest, $nom, $sujet, $message, $fichier, $type){
+		public function send($exp, $dest,$adress_id, $nom, $sujet, $message, $fichier, $type){
 		
 			$mail = new PHPMailer;
 			
@@ -13,7 +13,7 @@ require_once './config_mail.php';
 			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 			$mail->isSMTP();  
-                       // Set mailer to use SMTP
+                       		// Set mailer to use SMTP
 			$mail->Host = SMTP_HOST;  								// Specify main and backup SMTP servers
 			$mail->SMTPAuth = SMTP_AUTH;
 			$mail->Port = SMTP_PORT;
@@ -38,6 +38,7 @@ require_once './config_mail.php';
 
 			$mail->Subject = $sujet;
 			$mail->Body    = $message;
+			$mail->Body    .="<p style='font-size : 10px; color:lightgrey; text-align : center;'>pour vous désabonner <a href=".base_url().'disable/abo/'.$adress_id.">cliquer ici</a></p><input type='hidden' value='$dest' name='email'/>";
 			$mail->AltBody =  strip_tags($message);
 			
 			if($type === "html"){

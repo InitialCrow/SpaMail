@@ -16,8 +16,8 @@ define("SMTP_PASSWORD","2df030");
 
 // seed / migrate dataBase
 define('DATABASE_HOST','localhost');
-define('DATABASE_USERNAME','daniel');
-define('DATABASE_PASS','monia');
+define('DATABASE_USERNAME','root');
+define('DATABASE_PASS','');
 define('DATABASE_NAME','mailing_kertios');
 
 ?>

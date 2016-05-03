@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>EnvoiMail 1.0.3</title>
+        <title>EnvoiMail 1.0.4</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -47,7 +47,7 @@
 					        			if(!empty($dest_list) || isset($dest_list)){
 					        				
 					        				foreach ($dest_list as $dest) {
-					        					if(!empty( $dest_mail_base) || isset($dest_mail__base)){
+					        					if(!empty( $dest_mail_base) || isset($dest_mail_base)){
 					        						if($dest->libelle === $dest_mail_base){
 
 					        						echo "<option  value=\"$dest->libelle\" selected = 'selected' >$dest->libelle </option>";
@@ -60,9 +60,6 @@
 					        					else{
 					        						echo "<option value=\"$dest->libelle\">$dest->libelle</option>";
 					        					}
-					        					
-
-					        					
 									}
 					        			}
 					        			else {
