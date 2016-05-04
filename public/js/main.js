@@ -234,7 +234,8 @@ function addListPannel(button, submit_mode){
 			$emailContainer.append(emailInput);
 			$nomContainer.append(nomInput);
 			$prenomContainer.append(prenomInput);
-			 $optionContainer.append(optionInput);
+			$optionContainer.append(optionInput);
+			$button.attr('disabled','disabled');
 
 			$('.add-new-adress').on('click',function(evt){
 
