@@ -71,7 +71,7 @@ $route['dashboard'] = 'adminController/index';
 $route['dashboard/adress/(:any)/delete/(:any)'] = 'adminController/delete/$1/$2';
 $route['dashboard/list'] = 'adminController/indexList';
 
-$route['dashboard/adress/(:any)'] = 'adminController/showList/$1';
+$route['dashboard/adress'] = 'adminController/showList';
 $route['dashboard/adress/edit_list/(:any)'] = 'adminController/edit/$1';
 $route['dashboard/adress/add/index'] = 'adminController/addList';
 $route['dashboard/list/pannel'] = 'adminController/listPannel';

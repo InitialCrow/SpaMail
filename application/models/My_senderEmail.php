@@ -38,7 +38,7 @@ require_once './config_mail.php';
 
 			$mail->Subject = $sujet;
 			$mail->Body    = $message;
-			$mail->Body    .="<p style='font-size : 10px; color:lightgrey; text-align : center;'>pour vous désabonner <a href=".base_url().'disable/abo/'.$adress_id.">cliquer ici</a></p><input type='hidden' value='$dest' name='email'/>";
+			$mail->Body    .="<p style='font-size : 11px; color:grey; text-align : center;'>pour vous désabonner <a href=".base_url().'disable/abo/'.$adress_id.">cliquer ici</a></p><input type='hidden' value='$dest' name='email'/>";
 			$mail->AltBody =  strip_tags($message);
 			
 			if($type === "html"){

@@ -14,7 +14,7 @@
 				</div>
 		        </header>
 		        <div class="wrapper">
-		       	 <p style="text-align:center">vous ne receverez plus de news de notre part</p>
+		       	 <p style="text-align:center">vous ne recevrez plus de news de notre part</p>
 		        </div>
 
 			

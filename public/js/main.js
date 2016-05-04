@@ -19,11 +19,20 @@ $(document).ready(function(){
 	canSend();
 	hideAdress();
 	$('.js-scrollTo').on('click', function() { // Au clic sur un élément
-		var page = $(this).attr('href'); // Page cible
-		var speed = 750; // Durée de l'animation (en ms)
-		$('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
-		$('.alert').css('display','none');
-		return false;
+			$('.row').css('display','block');
+			var self =$(this);
+			window.setTimeout(function(){
+				var page = self.attr('href'); // Page cible
+				var speed = 750; // Durée de l'animation (en ms)
+				$('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+				$('.alert').css('display','none');
+
+			},500);
+			return false;
+			
+
+		
+		
 
 	});
 
@@ -145,6 +154,7 @@ function checkDelete(idButton){
 function hideAdress(){
 	var $count_row = $('.row');
 	var slicy = 20;
+	var $row_visible = [];
 	if($count_row.length>20){
 
 		for (var i =0; i<$count_row.length; i++){
@@ -234,18 +244,24 @@ function addListPannel(button, submit_mode){
 					alert('veuillez rentrez une email valide');
 					return;
 				}
-
+				/*var adressContainer = "<a href=\"edit_list/$ad->id\" class='hide-adress'><div class=\"row row".$i."\"><div class=\"col-xs-3 center-block rowData\">$ad->email</div><div class=\"col-xs-3 center-block rowData \">$ad->nom</div><div class=\"col-xs-2 center-block rowData \">$ad->prenom</div><div class=\"col-xs-2 center-block rowData \">$ad->abonnee</div><div class=\"col-xs-2 center-block rowData \"><button class=\"btn btn-default deleteAd\" data-token=\"$ad->id\" data-type=\"adress\">supprimer</button></div></div></a>";*/
 			
 				$.ajax({
+
 					url: 'add/index',
 					type:'POST',
 					data: $('.adminForm').serialize(),
 					success: function(msg)
 					{
+						/*$('.row').last().prepend("<a href=\"edit_list/$ad->id\" class='hide-adress'><div class=\"row row\"><div class=\"col-xs-3 center-block rowData\">"+$('.email').val()+"</div><div class=\"col-xs-3 center-block rowData \">"+$('.nom').val()+"</div><div class=\"col-xs-2 center-block rowData \">"+$('.prenom').val()+"</div><div class=\"col-xs-2 center-block rowData \">oui</div><div class=\"col-xs-2 center-block rowData \"><button class=\"btn btn-default deleteAd\" data-token=\"$ad->id\" data-type=\"adress\">supprimer</button></div></div></a>");*/
+
+				
 						$('.email').val("");
 						$('.nom').val("");
 						$('.prenom').val("");
-						alert('email ajouté');
+						
+
+						$('form').submit();
 
 					},
 					error : function(msg) {

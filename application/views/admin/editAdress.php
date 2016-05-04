@@ -64,7 +64,7 @@
              ?>
         </form>
 
-        <a class=" back-page" href="<?php echo base_url( 'dashboard/adress/').'/'.$adress[0]->liste_destinataire_id?>"> <- retour </a>
+        <a class=" back-page" href="<?php echo base_url( 'dashboard/adress/')?>"> <- retour </a>
 
 		
     </div>

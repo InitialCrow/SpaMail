@@ -90,14 +90,14 @@ class AdminController extends CI_Controller {
 	   	}
 	}
 
-	public function showList($id){
+	public function showList(){
 
 		if($this->session->userdata('logged_in')){
 			
 
 			$dataDash['list_select'] = $this->input->post('libelle');
 			if(empty($dataDash['list_select'])){
-				$adresse = $this -> db -> select('*')->from('adresse')->where('liste_destinataire_id',$id)->get();
+				$adresse = $this -> db -> select('*')->from('adresse')->where('liste_destinataire_id')->get();
 				$adresse = $adresse->result();
 			
 				$list = $this -> db -> select('*')->from('liste_destinataire')->get();
@@ -105,15 +105,18 @@ class AdminController extends CI_Controller {
 				$dataDash['adress']= $adresse;
 				$dataDash['list'] = $list;
 				$this->load->view('admin/indexList',$dataDash);
+
 				return;
 			}
 		
 
 			$list = $this -> db -> select('*')->from('liste_destinataire')->where('libelle',$dataDash['list_select'])->get();
 			$list = $list->result();
+			
 			if(!empty($list) && isset($list)){
 				$adresse = $this -> db -> select('*')->from('adresse')->where('liste_destinataire_id',$list[0]->id)->get();
 				$adresse = $adresse->result();
+
 			}
 			else{
 				$adresse = null;
@@ -123,7 +126,10 @@ class AdminController extends CI_Controller {
 			$list = $list->result();
 
 			$dataDash['adress']= $adresse;
+			
+			
 			$dataDash['list'] = $list;
+
 			$this->load->view('admin/indexList',$dataDash);
 
 		}

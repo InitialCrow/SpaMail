@@ -55,13 +55,15 @@ class MailController extends CI_Controller {
 	   		$i=0;
 	   		foreach ($adresse as $key => $value) {
 	   			$i++;
+
 	   			
-	   			$dataDB= array(
-	   				'mail_id'=>$mail[0]->id,
-	   				'envoi'=> $i
-	   			);
-	   			$this->db->insert('log_envoi', $dataDB);
 	   			if($value->abonnee == 1){
+	   				$dataDB= array(
+		   				'mail_id'=>$mail[0]->id,
+		   				'envoi'=> $i
+	   				);
+	   				$this->db->insert('log_envoi', $dataDB);
+	   				
 	   				$this->my_senderEmail->send($mail[0]->email, $value->email,$value->id, $mail[0]->nom, $mail[0]->sujet, $mail[0]->corps_mail, $fichier, $mail[0]->type);
 	   			}
 	   			

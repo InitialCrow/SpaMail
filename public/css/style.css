@@ -488,7 +488,14 @@ body{
 	padding : 40px 0 ;
 	
 }
-
+.dashboardList .down{
+	display: inline;
+	background: inherit;
+}
+.dashboardList .down:hover{
+	display: inline;
+	background: inherit;
+}
 .dashboardList .title{
 	text-transform: uppercase;
 	font-size: 1.8rem;

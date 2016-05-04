@@ -24,7 +24,8 @@
   		 <?php include('./application/views/partials/partial.header-admin.php'); ?>
        <div class="dashboardList wrapper">
         <?php include('./application/views/partials/partial.nav.php'); ?>
-        <form class="adminForm" method='post' enctype='multipart/form-data' action="<?php if(!empty($list)) echo base_url('dashboard/adress').'/'.$list[0]->id ?>"  >
+
+        <form class="adminForm" method='post' enctype='multipart/form-data' action="<?php if(!empty($list)) echo base_url('dashboard/adress').'/' ?>"  >
               <label for="dest">listes des destinataires</label>
               <p class="warning">choisir une liste pour voir les details</p>
         			<select name="libelle" class="field form-control" onchange="this.form.submit()">
@@ -60,12 +61,12 @@
                 
                 <?php 
                   if(!empty($adress) || isset($adress)){
-                      echo "<p>contacts pour $list_select</p>
+                      echo "<p>contacts pour $list_select <a style =\"color:blue; text-decoration : underline;\" href =\".back-page\" class=\"js-scrollTo down\"> aller en bas</a></p>
                             <div class=\"row\">
                               <div class=\"col-xs-3 center-block title\">email</div>
                               <div class=\"col-xs-3 center-block title\">nom</div>
                               <div class=\"col-xs-2 center-block title\">prenom</div>
-                              <div class=\"col-xs-2 center-block title\">abonnée</div> 
+                              <div class=\"col-xs-2 center-block title\">abonné</div> 
                               <div class=\"col-xs-2 center-block title\">options</div>      
                             </div>";
                             $i = 0;
@@ -89,16 +90,11 @@
 
                  ?>
                   <div class="row">
-                          <div class="col-xs-3 center-block email_input rowData">
-                           
-                            
+                          <div class="col-xs-3 center-block email_input rowData">                                                       
                           </div>
 
                           
                           <div class="col-xs-3 center-block nom_input  rowData ">
-                         
-                            
-
                           </div>
                           <div class="col-xs-2 center-block prenom_input rowData ">
                             
