@@ -83,4 +83,4 @@ $route['saved_mail/send_test/(:any)'] = 'mailController/sendMail/$1';
 $route['disable/abo/(:any)'] = 'mailController/disableAbo/$1';
 
 //route for cli
-$route['artisanP/(.+)$'] = 'artisanP/$1';
+$route['ArtisanP/(.+)$'] = 'ArtisanP/$1';
